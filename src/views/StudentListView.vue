@@ -50,19 +50,19 @@
             rel="prev"
             v-if="page != 1"
             id="page-prev"
-            class="join-item items-center btn mr-10 hover:bg-gray-500"
+            class="join-item items-center btn bg-slate-300 hover:bg-gray-500"
         >
             «
         </RouterLink>
 
-        <button class="join-item btn text-center hover:bg-gray-500">Page {{ page }} of {{ totalPages }}</button>
+        <div class="join-item btn bg-white text-center hover:bg-gray-500">Page {{ page }} of {{ totalPages }}</div>
         <div class="mr-10">
         <RouterLink
             :to="{ name: 'home', query: { page: page + 1 } }"
             rel="next"
             v-if="hasNextPage"
             id="page-next"
-            class="join-item text-center btn ml-10  hover:bg-gray-500"
+            class="join-item text-center btn bg-slate-300 hover:bg-gray-500"
         >
             »
         </RouterLink>
