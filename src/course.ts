@@ -1,9 +1,9 @@
 export interface CourseItem{
     id: number
     name: string
-    surname: string
     courseID: string
-    description: string   
+    description: string 
+    enrolledStudents : StudentEnroll[]  
 }
 export interface StudentEnroll{
     id: number

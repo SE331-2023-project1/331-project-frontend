@@ -17,7 +17,7 @@
         <a class="ml-2 normal-case font-bold text-3xl text-white">SSLT</a>
       </div>
     </div>
-    <div class="flex">
+    <div class="flex bg-gray-100">
       <!-- Drawer on the left -->
       <div class="w-1/6">
         <div class="drawer lg:drawer-open z-50">
@@ -31,7 +31,7 @@
 
             </label>
           </div>
-          <div class="drawer-side">
+          <div class="drawer-side min-h-screen">
             <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
             <ul class="menu p-4 w-30 min-h-full bg-gray-800 text-white">
               <!-- Sidebar content here -->

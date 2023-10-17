@@ -2,7 +2,7 @@
   <div class="flex items-center">
     <h1 class="text-4xl mt-5 font-bold text-gray-700">Student List</h1>
     <div class="search flex justify-center items-center flex-1 mt-5">
-      <form class="max-w-[480px] w-full">
+      <form class="max-w-[600px] w-full">
         <div class="relative">
           <input
             type="text"
@@ -40,7 +40,7 @@
       </button>
     </div>
   </div>
-  <div>
+  <div class="">
     <StudentCard v-for="student in students" :key="student.id" :student="student"></StudentCard>
   </div>
   <div class="flex justify-center mt-5">
@@ -177,7 +177,7 @@ const showForm = () => {
           department:'',
           images: [],
           advisor: {id: 0,academicPosition:'',name: '',surname: '',images: [],department: ''},
-          course: {id:0,name:'',courseID:'',},
+          courses: [{id:0,name:'',courseID:'',description:''}],
         }
         StudentService.saveStudent(newStudent)
       }

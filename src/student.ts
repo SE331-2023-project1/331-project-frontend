@@ -6,7 +6,7 @@ export interface StudentInfo{
     department: string
     images: string[]
     advisor: StudentAdvisor
-    course: StudentCourse
+    courses: StudentCourse[]
 }
 export interface StudentAdvisor{
     id: number
@@ -20,4 +20,5 @@ export interface StudentCourse{
     id: number
     name: string
     courseID: string
+    description:string
 }
