@@ -16,7 +16,7 @@
         
         </div>
         <div class="card-actions justify-end">
-          <button class="btn text-white bg-gray-700 hover:bg-gray-400 mt-[-50px]">Edit</button>
+          <button class="btn text-white bg-gray-700 hover:bg-gray-400 mt-[-50px] w-20">Edit</button>
         </div>
     </div>
       </div>

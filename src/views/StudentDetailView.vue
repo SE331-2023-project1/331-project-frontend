@@ -16,20 +16,41 @@
   </div>
 </div>
 
+
+<div class="card w-full h-full ml-2 mr-20">
 <div class="card w-full h-full bg-base-100 shadow-xl mt-5 ml-5 mr-10">
+
+  <div class="card-body items-left text-left">
+    <h2 class="card-title"> Advisor </h2>
+    <div class="w-40">
+      <div class="border-2 rounded-xl ">
+        
+      <p class="text-md mt-1 ml-2"> {{ student?.advisor.name }} {{ student?.advisor.surname }}</p>
+      <p class="text-sm text-gray-400 mt-1 ml-2"> {{ student?.advisor.department }} </p>
+  </div>
+    </div>
+    </div>
+  </div>
+  <div class="card w-full h-full bg-base-100 shadow-xl mt-5 ml-5 mr-10">
   <figure class="px-2 pt-2">
   </figure>
   <div class="card-body items-left text-left">
     <h2 class="card-title"> Course List </h2>
     <div v-for="course in student?.courses" :key="course.id">
-            <div>
-    <span class="inline-block bg-gray-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{course.courseID}} {{course.name}} 
-    <p> {{ course.description }}</p>
+      <div>
+    <span class="inline-block bg-gray-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-3 mb-3">{{course.courseID}} - {{course.name}} 
+      <p class="text-sm mt-1"> {{ course.description }} </p>
     </span>
   </div>
     </div>
+    
     </div>
   </div>
+</div>
+
+
+
+  
 </div>
 </template>
 <script setup lang="ts">
