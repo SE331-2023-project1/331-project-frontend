@@ -3,9 +3,10 @@ export interface StudentInfo{
     studentID: string
     name: string
     surname: string
+    department: string
     images: string[]
     advisor: StudentAdvisor
-    course: StudentCourse[]
+    course: StudentCourse
 }
 export interface StudentAdvisor{
     id: number
