@@ -72,7 +72,10 @@
             </li>
 
             <li class="flex flex-col items-center mt-5">
-              <a
+              <RouterLink
+                :to="{ name: 'advisor' }"
+                
+    
                 class="inline-flex flex-col items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -102,8 +105,12 @@
                   </g>
                 </svg>
                 <span class="mt-auto text-white">Teacher</span>
-              </a>
+      
+            </RouterLink>
+              
+            
             </li>
+        
             <li class="flex flex-col items-center mt-5">
               <a
                 class="inline-flex flex-col items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"

@@ -8,11 +8,11 @@ export default{
     },
     getAdvisorByID(id: number): Promise<AxiosResponse<AdvisorInfo>>{
         return apiClient.get<AdvisorInfo>('advisors/' +id.toString())
-    }
-//     ,
-//     saveAdvisor(event: AdvisorInfo): Promise<AxiosResponse<AdvisorInfo>>{
-//         return apiClient.post<AdvisorInfo>('/events',event)
-//     },
+    },
+    saveAdvisor(advisor: AdvisorInfo): Promise<AxiosResponse<AdvisorInfo>>{
+        return apiClient.post<AdvisorInfo>('/advisors',advisor)
+    },
+
 //     getAdvisorsByKeyword(keyword: string, perPage: number, page: number): Promise<AxiosResponse<AdvisorInfo[]>> {
 //     return apiClient.get<AdvisorInfo[]>('/events?title=' + keyword + '&_limit=' + perPage + '&_page=' + page)
 // }
