@@ -16,7 +16,7 @@
     </button>
 </div>
   <figure class="px-10 pt-7">
-    <img src="https://media.discordapp.net/attachments/1102521841416949850/1163518158435536966/f02bed84317f6e41a5b0118348173512.png?ex=653fddba&is=652d68ba&hm=b43f3c2e84b66e3e721f9854fd84d1fbc4b248e829fa4439b6654fa3931f158b&=&width=1016&height=1016" alt="Shoes" class=rounded-full />
+    <img src="https://media.discordapp.net/attachments/1102521841416949850/1163518158435536966/f02bed84317f6e41a5b0118348173512.png?ex=653fddba&is=652d68ba&hm=b43f3c2e84b66e3e721f9854fd84d1fbc4b248e829fa4439b6654fa3931f158b&=&width=1016&height=1016" alt="Shoes" class="rounded-md" />
   </figure>
   <div class="card-body mt-2">
     <h3 class="text-gray-500 "><span class="font-bold">Name:</span> <span class="text-gray-400">{{ advisor?.name }}</span></h3>
@@ -32,15 +32,15 @@
 </div>
 
 <div class="card w-full h-full shadow-2xl mt-5 ml-5 mr-10">
-  <div class="card-body items-left text-left">
+  <div class="card-body items-left text-left ">
     <h2 class="card-title"> Student </h2>
     
 <div v-for="advisees in advisor?.advisees" :key="advisees.id" class="text-left">
   <div class="flex items-center"> <!-- Use flex to align image and text -->
     <figure class="mr-3">
-      <img src="https://media.discordapp.net/attachments/856454942964056074/1163567240147386491/1e0204b943c97c63bb6bc20698172552.png?ex=65400b70&is=652d9670&hm=048986c5401505c13826c348e4aa2b3a00e60707331ae510c00e072d8e4cfc17&=&width=537&height=646" class="w-20 h-25">
+      <img src="https://media.discordapp.net/attachments/856454942964056074/1163567240147386491/1e0204b943c97c63bb6bc20698172552.png?ex=65400b70&is=652d9670&hm=048986c5401505c13826c348e4aa2b3a00e60707331ae510c00e072d8e4cfc17&=&width=537&height=646" class="w-20 h-20 rounded-full">
     </figure>
-    <span class="inline-block w-full bg-white border border-gray-400 rounded-md px-3 py-2 text-sm text-gray-800">
+    <span class="inline-block w-full bg-white border border-gray-400 rounded-md px-3 py-2 text-sm text-gray-800 hover:bg-gray-100">
       <p class="text-sm mt-1 text-gray-400">{{ advisees.studentID }}</p>
       <span class="font-semibold text-lg">{{advisees.name}} {{advisees.surname}}</span>
     </span>
