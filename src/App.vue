@@ -74,10 +74,8 @@
             <li class="flex flex-col items-center mt-5">
               <RouterLink
                 :to="{ name: 'advisor' }"
-                
-    
                 class="inline-flex flex-col items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
+               >
                 <svg
                   width="24px"
                   height="24px"
@@ -105,16 +103,15 @@
                   </g>
                 </svg>
                 <span class="mt-auto text-white">Teacher</span>
-      
-            </RouterLink>
-              
-            
+            </RouterLink>                        
             </li>
-        
+          
+
             <li class="flex flex-col items-center mt-5">
-              <a
+              <RouterLink
+                :to="{ name: 'Signin' }"
                 class="inline-flex flex-col items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
+               >
                 <svg
                   class="h-6 w-6 text-white"
                   fill="none"
@@ -130,10 +127,12 @@
                 </svg>
 
                 <span class="mt-auto text-white">Sign In</span>
-              </a>
+              </RouterLink>
             </li>
-            <li class="flex flex-col items-center mt-5">
-              <a
+            
+            <li class="flex flex-col items-center mt-5">              
+              <RouterLink
+                :to="{ name: 'Signup' }"
                 class="inline-flex flex-col items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -152,8 +151,9 @@
                 </svg>
 
                 <span class="mt-auto text-white">Sign Up</span>
-              </a>
+              </RouterLink>
             </li>
+
           </ul>
         </div>
       </div>

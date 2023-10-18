@@ -31,13 +31,13 @@
         </form>
       </div>
       <div class="ml-auto">
-        <!-- <button
+        <button
           @click="showForm"
           type="button"
           class="text-white bg-red-500 hover:bg-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-10 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none mt-6"
         >
           + Add Advisor
-        </button> -->
+        </button>
       </div>
     </div>
     <div class="">
@@ -87,9 +87,6 @@
   const router = useRouter()
   const advisors: Ref<Array<AdvisorInfo>> = ref([])
   const totalAdvisor = ref<number>(0)
-  let advisorID: string | null = null;
-  let name: string | null = null;
-  let surname: string | null = null;
   const totalPages = computed(() => Math.ceil(totalAdvisor.value / 3))
   const props = defineProps({
     page: {
@@ -124,63 +121,6 @@
       })
   })
   const showForm = () => {
-    Swal.fire({
-      title: 'Add new Advisor',
-      html:
-        '<input id="swal-input1" class="swal2-input" placeholder="Advisor ID">' +
-        '<input id="swal-input2" class="swal2-input" placeholder="Name">' +
-        '<input id="swal-input3" class="swal2-input" placeholder="Surname">',
-      showCancelButton: true,
-      confirmButtonText: 'Submit',
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        const advisorIDInput = document.getElementById('swal-input1') as HTMLInputElement;
-        const nameInput = document.getElementById('swal-input2') as HTMLInputElement;
-        const surnameInput = document.getElementById('swal-input3') as HTMLInputElement;
-  
-        if (!advisorIDInput || !nameInput || !surnameInput) {
-          Swal.showValidationMessage('Input fields not found');
-          return false;
-        }
-  
-        const advisorIDValue = advisorIDInput.value;
-        const nameValue = nameInput.value;
-        const surnameValue = surnameInput.value;
-  
-        if (!advisorIDValue || !nameValue || !surnameValue) {
-          Swal.showValidationMessage('Please fill out all the fields');
-          return false;
-        }
-  
-        advisorID = advisorIDValue;
-        name = nameValue;
-        surname = surnameValue;
-  
-        return {
-          advisorID: advisorID,
-          name: name,
-          surname: surname
-        };
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (advisorID && name && surname) {
-          Swal.fire('Add success', '', 'success')
-          console.log(advisorID);
-          console.log(name);
-          console.log(surname);
-          const newAdvisor: AdvisorInfo = {
-            id: 0,
-            name: name,
-            surname: surname,
-            department:'',
-            academicPosition:'',
-            images: []
-          }
-          AdvisorService.saveAdvisor(newAdvisor)
-        }
-      }
-    });
   };
   </script>
   

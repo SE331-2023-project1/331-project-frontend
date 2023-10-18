@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import StudentListView from '@/views/StudentListView.vue'
 import StudentDetailView from '@/views/StudentDetailView.vue'
 import AdvisorListView from '@/views/AdvisorListView.vue'
+import AdvisorDetailView from '@/views/AdvisorDetailView.vue'
+import SignUpView from '@/views/SignUpView.vue'
+import SignInView from '@/views/SignInView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,7 +31,28 @@ const router = createRouter({
       name: "student-detail",
       component: StudentDetailView,
       props: true,
-    }
+    },
+
+    {
+      path: "/Signup",
+      name: "Signup",
+      component: SignUpView,
+      props: true,
+    },
+    {
+      path: "/Signin",
+      name: "Signin",
+      component: SignInView,
+      props: true,
+    },
+
+    
+  {
+    path: "/advisor/:id",
+    name: "advisor-detail",
+    component: AdvisorDetailView,
+    props: true,
+  }
   ]
 
   
