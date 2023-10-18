@@ -7,12 +7,12 @@
           <input
             type="text"
             name="q"
-            class="w-full border h-12 shadow p-4 rounded-full"
+            class="w-full border h-10 shadow p-4 rounded-full"
             placeholder="search"
           />
           <button type="submit">
             <svg
-              class="text-gray-400 h-5 w-5 absolute top-3.5 right-3 fill-current"
+              class="text-gray-400 h-5 w-5 absolute top-2.5 right-3 fill-current"
               xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink"
               version="1.1"
@@ -31,13 +31,13 @@
       </form>
     </div>
     <div class="ml-auto">
-      <button
-        @click="showForm"
+        <RouterLink
+            :to="{ name: 'add-student' }"
         type="button"
-        class="text-white bg-red-500 hover:bg-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-10 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none mt-6"
+        class="text-white bg-gradient-to-r from-red-500 to-orange-500 hover:bg-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-10 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none mt-6"
       >
         + Add Student
-      </button>
+        </RouterLink>
     </div>
   </div>
   <div class="">
@@ -55,7 +55,7 @@
             «
         </RouterLink>
 
-        <div class="join-item btn bg-white text-center hover:bg-gray-500">Page {{ page }} of {{ totalPages }}</div>
+        <div class="join-item btn bg-gray-300 text-center hover:bg-gray-500">Page {{ page }} of {{ totalPages }}</div>
         <div class="mr-10">
         <RouterLink
             :to="{ name: 'home', query: { page: page + 1 } }"
@@ -73,7 +73,6 @@
 </template>
 
 <script setup lang="ts">
-import Swal from 'sweetalert2'
 import { type StudentInfo } from '@/student'
 import StudentService from '@/services/StudentService'
 import type { Ref } from 'vue'
@@ -83,13 +82,11 @@ import { useRouter } from 'vue-router'
 import { onBeforeRouteUpdate } from 'vue-router'
 import NProgress from 'nprogress'
 import StudentCard from '@/components/StudentCard.vue'
-
+import AdvisorService from "@/services/AdvisorService"
+import type { StudentAdvisor } from '@/student'
 const router = useRouter()
 const students: Ref<Array<StudentInfo>> = ref([])
 const totalStudent = ref<number>(0)
-let studentID: string | null = null;
-let name: string | null = null;
-let surname: string | null = null;
 const totalPages = computed(() => Math.ceil(totalStudent.value / 3))
 const props = defineProps({
   page: {
@@ -111,6 +108,17 @@ StudentService.getStudent(3, props.page)
   .catch(() => {
     router.push({ name: 'NetworkError' })
   })
+
+const advisors = ref<StudentAdvisor[]>([])
+  AdvisorService.getAdvisors()
+  .then((response) => {
+    advisors.value = response.data
+    console.log(advisors.value)
+  })
+  .catch(() => {
+    router.push({ name: 'NetworkError' })
+  })
+console.log(advisors.value)
 onBeforeRouteUpdate((to, from, next) => {
   const toPage = Number(to.query.page)
   StudentService.getStudent(3, toPage)
@@ -121,69 +129,8 @@ onBeforeRouteUpdate((to, from, next) => {
     })
     .catch(() => {
       next({ name: 'NetworkError' })
-    })
+    })  
 })
-const showForm = () => {
-  Swal.fire({
-    title: 'Add new student',
-    html:
-      '<input id="swal-input1" class="swal2-input" placeholder="Student ID">' +
-      '<input id="swal-input2" class="swal2-input" placeholder="Name">' +
-      '<input id="swal-input3" class="swal2-input" placeholder="Surname">',
-    showCancelButton: true,
-    confirmButtonText: 'Submit',
-    showLoaderOnConfirm: true,
-    preConfirm: () => {
-      const studentIDInput = document.getElementById('swal-input1') as HTMLInputElement;
-      const nameInput = document.getElementById('swal-input2') as HTMLInputElement;
-      const surnameInput = document.getElementById('swal-input3') as HTMLInputElement;
-
-      if (!studentIDInput || !nameInput || !surnameInput) {
-        Swal.showValidationMessage('Input fields not found');
-        return false;
-      }
-
-      const studentIDValue = studentIDInput.value;
-      const nameValue = nameInput.value;
-      const surnameValue = surnameInput.value;
-
-      if (!studentIDValue || !nameValue || !surnameValue) {
-        Swal.showValidationMessage('Please fill out all the fields');
-        return false;
-      }
-
-      studentID = studentIDValue;
-      name = nameValue;
-      surname = surnameValue;
-
-      return {
-        studentID: studentID,
-        name: name,
-        surname: surname
-      };
-    },
-  }).then((result) => {
-    if (result.isConfirmed) {
-      if (studentID && name && surname) {
-        Swal.fire('Add success', '', 'success')
-        console.log(studentID);
-        console.log(name);
-        console.log(surname);
-        const newStudent: StudentInfo = {
-          id: 0,
-          studentID: studentID,
-          name: name,
-          surname: surname,
-          department:'',
-          images: [],
-          advisor: {id: 0,academicPosition:'',name: '',surname: '',images: [],department: ''},
-          courses: [{id:0,name:'',courseID:'',description:''}],
-        }
-        StudentService.saveStudent(newStudent)
-      }
-    }
-  });
-};
 </script>
 
 <style scoped></style>

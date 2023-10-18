@@ -5,6 +5,7 @@ export interface AdvisorInfo{
     surname: string
     images: string[]
     department: string
+    advisees : AdviseesStudent[]
 }
 export interface AdviseesStudent{
     id: number
