@@ -17,7 +17,7 @@ export interface StudentAdvisor{
     department: string
 }
 export interface StudentCourse{
-    id: number
+    id : number
     name: string
     courseID: string
     description:string

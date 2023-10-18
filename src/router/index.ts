@@ -6,6 +6,9 @@ import AdvisorDetailView from '@/views/AdvisorDetailView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import SignInView from '@/views/SignInView.vue'
 
+import StudentFormView from '@/views/StudentFormView.vue'
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -33,6 +36,7 @@ const router = createRouter({
       props: true,
     },
 
+
     {
       path: "/Signup",
       name: "Signup",
@@ -52,7 +56,15 @@ const router = createRouter({
     name: "advisor-detail",
     component: AdvisorDetailView,
     props: true,
-  }
+  },
+
+    {
+      path: "/add-student",
+      name: "add-student",
+      component: StudentFormView,
+      props: true,
+    },
+
   ]
 
   

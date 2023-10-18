@@ -24,6 +24,7 @@
     "pinia": "^2.1.6",
     "sweetalert2": "^11.7.32",
     "vue": "^3.3.4",
+    "vue-media-upload": "^2.1.2",
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
