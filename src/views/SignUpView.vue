@@ -1,54 +1,53 @@
 <template>
-    
-    <div class="container mx-auto p-4 bg-white">
-        <div class="w-full md:w-1/2 lg:w-1/3 mx-auto my-12">
-            <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
-      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign up to your account</h2>
-    </div>
-          <form class="flex flex-col mt-5">
-            <input
-                type="text"
-                name="name"
-                class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
-                placeholder="Name"
-            />
-            <input
-                type="text"
-                name="surname"
-                class="px-4 py-3 mt-4 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
-                placeholder="Surname"
-            />
-            <input
-                type="email"
-                name="email"
-                class="px-4 py-3 mt-4 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
-                placeholder="Email address"
-            />
-            <input
-                type="password"
-                name="password"
-                class="px-4 py-3 mt-4 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
-                placeholder="Password"
-            />
-            <input
-                type="password"
-                name="confirm-password"
-                class="px-4 py-3 mt-4 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
-                placeholder="Confirm Password"
-            />
-            <button
-                type="submit"
-                class="mt-4 px-4 py-3  leading-6 text-base rounded-md border border-transparent text-white focus:outline-none bg-red-500 text-blue-100 hover:text-white focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer inline-flex items-center w-full justify-center items-center font-medium focus:outline-none"
-            >
-              Register
-            </button>
-            <div class="flex flex-col items-center mt-5">
-              <p class="mt-1 text-xs font-light text-gray-500">
-                Register already ?<a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">    Sign in now</a>
-                </p>
+  <!-- component -->
+  
+  <div class="min-h-screen bg-white py-6 flex flex-col justify-center mr-10">
+    <div class="relative ">
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-red-400 to-orange-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
+      </div>
+      
+      <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-5">
+          <div class="max-w-md mx-auto">
+          <div class="flex ">
+            <div class="rounded-full">
+            <svg class="h-8 w-8 rounded-full px-1.5 shadow-xl shadow-gray-300 text-white bg-gradient-to-r from-red-400 to-orange-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="6" cy="19" r="2" />  <circle cx="18" cy="5" r="2" />  <path d="M12 19h4.5a3.5 3.5 0 0 0 0 -7h-8a3.5 3.5 0 0 1 0 -7h3.5" /></svg>
+          </div>
+            <h1 class="ml-2 font-bold text-2xl text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500 "> SSLT </h1>
+          </div>
+          <div>
+            <h1 class="text-2xl font-bold mt-5 text-gray-600">CREATE YOUR ACCOUNT</h1>
+          </div>
+          <div class="divide-y divide-gray-200">
+            <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+              <div class="relative">
+                <input autocomplete="off" id="email" name="email" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 border-t-white border-l-white border-r-white text-gray-900 focus:outline-none focus:borer-rose-500" placeholder="Email Adress" />
+                <label for="email" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-6 peer-focus:text-gray-600 peer-focus:text-sm ">Email Adress</label>
+              </div>
+              <div class="relative">
+                <input autocomplete="off" id="email" name="email" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 border-t-white border-l-white border-r-white text-gray-900 focus:outline-none focus:borer-rose-500 mt-5" placeholder="EUsername" />
+                <label for="email" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-6 peer-focus:text-gray-600 peer-focus:text-sm mt-5">Username</label>
+              </div>
+              <div class="relative">
+                <input autocomplete="off" id="email" name="email" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 border-t-white border-l-white border-r-white text-gray-900 focus:outline-none focus:borer-rose-500 mt-5" placeholder="First Name" />
+                <label for="email" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-6 peer-focus:text-gray-600 peer-focus:text-sm mt-5">First Name</label>
+              </div>
+              <div class="relative">
+                <input autocomplete="off" id="email" name="email" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 border-t-white border-l-white border-r-white text-gray-900 focus:outline-none focus:borer-rose-500 mt-5" placeholder="Last Name" />
+                <label for="email" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-6 peer-focus:text-gray-600 peer-focus:text-sm mt-5">Last Name</label>
+              </div>
+              <div class="relative">
+                <input autocomplete="off" id="password" name="password" type="password" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 border-t-white border-l-white border-r-white text-gray-900 focus:outline-none focus:borer-rose-500 mt-5" placeholder="Password" />
+                <label for="email" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-6 peer-focus:text-gray-600 peer-focus:text-sm mt-5">Password</label>
+              </div>
+              
+              <div class="ml-80">
+                <button class="w-full bg-gradient-to-r from-red-400 to-orange-500 text-sm text-white rounded-md px-5 py-2 mt-7">LOGIN</button>
+              </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
-    </template>
+    </div>
+  </div>
+        </template>

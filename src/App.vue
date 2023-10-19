@@ -21,7 +21,6 @@
       <div class="drawer lg:drawer-open z-50">
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col items-center justify-center">
-          <!-- Page content here -->
           <label for="my-drawer-2" class="btn drawer-button lg:hidden mb-5">
             <svg class="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
@@ -36,8 +35,9 @@
         <div class="drawer-side min-h-screen drop-shadow-3xl rounded-br-6xl">
           <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
           <ul class="menu p-4 w-30 min-h-full bg-red-500 text-white rounded-br-6xl">
+            
             <!-- Sidebar content here -->
-            <li class="flex flex-col items-center mt-5">
+            <li class="flex flex-col items-center mt-20">
               <a
                 class="inline-flex flex-col items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
@@ -70,7 +70,6 @@
                 <span class="mt-auto text-white">Student</span>
               </RouterLink>
             </li>
-
             <li class="flex flex-col items-center mt-5">
               <RouterLink
                 :to="{ name: 'advisor' }"
@@ -105,7 +104,7 @@
                 <span class="mt-auto text-white">Teacher</span>
             </RouterLink>                        
             </li>
-          
+
 
             <li class="flex flex-col items-center mt-5">
               <RouterLink
@@ -155,7 +154,9 @@
             </li>
 
           </ul>
+          
         </div>
+        
       </div>
     </div>
     <div class="w-full">

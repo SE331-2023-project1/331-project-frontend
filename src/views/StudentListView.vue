@@ -1,45 +1,35 @@
 <template>
-  <div class="flex items-center">
+<div class="flex items-center justify-between">
     <h1 class="text-4xl mt-5 font-bold text-gray-700">Student List</h1>
-    <div class="search flex justify-center items-center flex-1 mt-5">
-      <form class="max-w-[600px] w-full">
-        <div class="relative">
-          <input
-            type="text"
-            name="q"
-            class="w-full border h-10 shadow p-4 rounded-full"
-            placeholder="search"
-          />
-          <button type="submit">
-            <svg
-              class="text-gray-400 h-5 w-5 absolute top-2.5 right-3 fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              version="1.1"
-              x="0px"
-              y="0px"
-              viewBox="0 0 56.966 56.966"
-              style="enable-background: new 0 0 56.966 56.966"
-              xml:space="preserve"
-            >
-              <path
-                d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"
-              ></path>
-            </svg>
-          </button>
+    <div class="search flex items-center ml-5 mt-6 mr-12">
+        <form class=""> 
+            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
+                </div>
+                <input type="search" id="default-search" class="block w-96 p-2 pl-12 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required>
+            </div>
+        </form>
+        <div class="flex items-center ml-5 justify-end">
+            <p class="text-gray-700 text-sm mr-2 font-semibold">Yanwarut</p>
+            <img src="https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_3x4.jpg" alt="Profile Image" class="w-10 h-10 rounded-full">
         </div>
-      </form>
     </div>
+</div>
+
+
     <div class="ml-auto">
-        <RouterLink
-            :to="{ name: 'add-student' }"
+        <!-- <RouterLink
+            :to="{ name: 'edit-student' }"
         type="button"
         class="text-white bg-gradient-to-r from-red-500 to-orange-500 hover:bg-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-10 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none mt-6"
       >
         + Add Student
-        </RouterLink>
+        </RouterLink> -->
     </div>
-  </div>
   <div class="">
     <StudentCard v-for="student in students" :key="student.id" :student="student"></StudentCard>
   </div>
