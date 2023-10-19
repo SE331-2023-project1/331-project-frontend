@@ -8,6 +8,7 @@ import SignInView from '@/views/SignInView.vue'
 
 import StudentFormView from '@/views/StudentFormView.vue'
 import AdvisorFormView from '@/views/AdvisorFormView.vue'
+import EditAdvisorForm from '@/views/EditAdvisorFormView.vue'
 
 
 const router = createRouter({
@@ -70,6 +71,12 @@ const router = createRouter({
       name: "add-advisor",
       component: AdvisorFormView,
       props: true,
+  },
+  {
+    path: "/edit-advisor",
+    name: "edit-advisor",
+    component: EditAdvisorForm,
+    props: true,
   },
     
 

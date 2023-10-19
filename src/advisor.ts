@@ -12,4 +12,5 @@ export interface AdviseesStudent{
     studentID: string
     name: string
     surname: string
+    images: string[]
 }
