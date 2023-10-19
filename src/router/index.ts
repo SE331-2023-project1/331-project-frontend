@@ -11,6 +11,7 @@ import AdvisorFormView from '@/views/AdvisorFormView.vue'
 import EditAdvisorForm from '@/views/EditAdvisorFormView.vue'
 import AnnouncementView from '@/views/AnnouncementView.vue'
 
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -59,7 +60,12 @@ const router = createRouter({
       component: SignInView,
       props: true,
     },
-
+    // {
+    //   path: "/announce",
+    //   name: "announce",
+    //   component: AnnounceMentView,
+    //   props: true,
+    // },
     
   {
     path: "/advisor/:id",
@@ -81,7 +87,7 @@ const router = createRouter({
       props: true,
   },
   {
-    path: "/edit-advisor",
+    path: "/edit-advisor/:id",
     name: "edit-advisor",
     component: EditAdvisorForm,
     props: true,
