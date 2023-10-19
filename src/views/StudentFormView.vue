@@ -1,10 +1,10 @@
 <template>
   <!-- component -->
   <div class="min-h-screen h-10 bg-white flex">
-    <div class="w-full max-w-6xl">
-        <div class="bg-white rounded shadow-xl">
-            <div class="px-8 py-4 text-gray-700 text-3xl font-bold border-b-2 border-red-400">Add Student</div>
-            <form @submit.prevent="saveStudent" name="student_application" id="student_application" action="" class="py-4 px-8">
+    <div class="w-full mt-7 max-w-6xl">
+        <div class="bg-white rounded-xl shadow-xl border ">
+            <div class="px-8 py-4 text-gray-700 text-3xl font-bold shadow-xl shadow-gray-200  border-red-400">Edit Information</div>
+            <form @submit.prevent="editStudentInformation" name="student_application" id="student_application" action="" class="py-4 px-8">
                 <div class="mb-4">
                     <label class="block text-gray-600 text-sm font-bold mb-2" for="student_id">Student ID:</label>
                     <input v-model="student.studentID" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="student_id" id="student_id" placeholder="Enter Student ID">
@@ -19,18 +19,13 @@
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-600 text-sm font-bold mb-2" for="course_name">Department:</label>
-                    <input v-model="student.department" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="course_name" id="department" placeholder="Enter Your Department">
+                    <input v-model="student.department" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="course_name" id="department" placeholder="Enter Student Department">
                     <p id="error_creater_id"></p>
                 </div>
-                <div class="mb-4">
-                    <label class="block text-gray-600 text-sm font-bold mb-2" for="course_name">Advisor:</label>
-                    <!-- <input class="border rounded w-full py-2 px-3 text-gray-700" type="text" name="course_name" id="course_name" value="" placeholder="Enter Your Department"> -->
-                    <!-- <BaseSelect v-model="student.advisor" label="Advisor" :options="advisors" /> -->
-                    <select v-model="student.advisor" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="select" name="advisor" id="advisor" >
+
+                <!-- <select v-model="student.advisor" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="select" name="advisor" id="advisor" >
                       <option v-for="advisor in advisors" :key="advisor.id" :value="advisor">{{ advisor.name }}</option>
-                    </select>
-                    <p id="error_creater_id"></p>
-                </div>
+                    </select> -->
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="course_name">Add Image:</label>
                     <ImageUpload v-model="student.images" />
@@ -58,19 +53,19 @@ import AdvisorService from '@/services/AdvisorService';
 import ImageUpload from '@/components/ImageUpload.vue';
 
 const store = useMessageStore()
-
 const router = useRouter()
 
 const student = ref<StudentInfo>({
   id: 0,
-  studentID :'',
+  studentID: '',
   name: '',
   surname: '',
   department: '',
   images: [],
-  advisor: { id: 0, academicPosition: '' ,name: '' ,surname: '' ,images: [] ,department: '' },
-  courses: [{ id: 1, name: '' ,courseID:'' ,description:'' }],
+  advisor: { id: 0, academicPosition: '', name: '', surname: '', images: [], department: '' },
+  courses: [{ id: 1, name: '', courseID: '', description: '' }],
 })
+
 const advisors = ref<StudentAdvisor[]>([])
 AdvisorService.getAdvisors()
   .then((response) => {
@@ -79,24 +74,27 @@ AdvisorService.getAdvisors()
   .catch(() => {
     router.push({ name: 'network-error' })
   })
-function saveStudent() {
-  console.log(student.value)
-    StudentService.saveStudent(student.value)
+
+  function editStudentInformation() {
+  console.log(student.value);
+  // Call your StudentService function to edit the student information
+  StudentService.editStudentInformation(student.value)
     .then((response) => {
-      console.log(response.data)
+      console.log(response.data);
       router.push({
         name: 'student-detail',
         params: { id: response.data.id }
-      })
-      store.updateMessage('You are successfully add a new event for' + response.data.name)
+      });
+      store.updateMessage('You have successfully edited the student details for ' + response.data.name);
       setTimeout(() => {
-        store.resetMessage()
-      }, 3000)
+        store.resetMessage();
+      }, 3000);
     })
     .catch(() => {
-      router.push({ name: 'network-error' })
-    })
+      router.push({ name: 'network-error' });
+    });
 }
+
 
 
 </script>

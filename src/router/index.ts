@@ -61,8 +61,8 @@ const router = createRouter({
   },
 
     {
-      path: "/add-student",
-      name: "add-student",
+      path: "/edit-student/:id",
+      name: "edit-student",
       component: StudentFormView,
       props: true,
     },

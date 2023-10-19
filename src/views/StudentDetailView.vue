@@ -3,21 +3,15 @@
         <h1 class="text-4xl mt-5 font-bold text-gray-700"> Student Detail </h1>
     </div>
 <div class="flex">
-  
 <div class="flex card w-96 bg-base-100 shadow-2xl mt-5">
-
-  <figure class="px-10 pt-7">
-    <img v-for="image in student?.images" :key="image" :src="image" class="rounded-md"/>
+  <figure class="px-12 pt-9">
+    <img v-for="image in student?.images" :key="image" :src="image" class="rounded-md w-13 h-13"/>
   </figure>
   <div class="card-body mt-2">
     <h3 class="text-gray-500"><span class="font-bold">Student ID:</span> <span class="text-gray-400">{{ student?.studentID }}</span></h3>
-  
     <h3 class="text-gray-500 "><span class="font-bold">Name:</span> <span class="text-gray-400">{{ student?.name }}</span></h3>
     <h3 class="text-gray-500 "><span class="font-bold">Surmame: </span><span class=" text-gray-400">{{ student?.surname }}</span></h3>
     <h3 class="text-gray-500 "><span class="font-bold">Department: </span><span class=" text-gray-400">{{ student?.department }}</span></h3>
-
-
-
     <div class="card-actions justify-end">
     </div>
     <div class="flex justify-start ml-32">
@@ -25,11 +19,12 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
 </svg>
     </button>
-    <button class="btn btn-circle px-1.5 ml-2 mt-2 bg-gray-600 hover:bg-gray-400"><svg class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    
+    <RouterLink
+            :to="{ name: 'edit-student', params: { id: student?.id } } " class="btn btn-circle px-1.5 ml-2 mt-2 bg-gray-600 hover:bg-gray-400"><svg class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
     </svg>
-    </button>
-    
+    </RouterLink>
 </div>
   </div>
   
@@ -55,8 +50,6 @@
 </div>
 
 </button>
-
-
 
 </div>
   </div>

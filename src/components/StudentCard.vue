@@ -1,6 +1,6 @@
 <template>
   <RouterLink :to="{ name: 'student-detail', params: { id: student?.id } }">
-    <div class="card card-side h-40 bg-base-100 shadow-2xl p-0 mt-5 mr-10 hover:bg-gray-100">
+    <div class="card card-side bg-base-100 shadow-2xl p-0 mt-5 mr-10 hover:bg-gray-100">
       <figure class="pd-5 px-6 ml-5">
         <img  v-for="image in student?.images" :key="image" :src="image" class="w-20 h-25 rounded-md"/>
       </figure>
