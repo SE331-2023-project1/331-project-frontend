@@ -14,9 +14,12 @@ export default{
         return apiClient.post<AdvisorInfo>('/advisors',advisor)
     },
 
-    getAdvisors(): Promise<AxiosResponse<StudentAdvisor[]>> {
-        return apiClient.get<StudentAdvisor[]>('/advisors')
-    }
+    getAdvisors(): Promise<AxiosResponse<AdvisorInfo[]>> {
+        return apiClient.get<AdvisorInfo[]>('/advisors')
+    },
+    editAdvisorInformation(advisor: AdvisorInfo): Promise<AxiosResponse<AdvisorInfo>> {
+        return apiClient.post<AdvisorInfo>('/advisors/' +advisor.id, advisor);
+    },
 //     ,
 //     saveAdvisor(event: AdvisorInfo): Promise<AxiosResponse<AdvisorInfo>>{
 //         return apiClient.post<AdvisorInfo>('/events',event)

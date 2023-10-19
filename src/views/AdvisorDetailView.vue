@@ -23,10 +23,11 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
 </svg>
     </button>
-    <button class="btn btn-circle px-1.5 ml-2 mt-2 bg-gray-600 hover:bg-gray-400"><svg class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <RouterLink
+            :to="{ name: 'edit-advisor', params: { id: advisor?.id } } " class="btn btn-circle px-1.5 ml-2 mt-2 bg-gray-600 hover:bg-gray-400"><svg class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
     </svg>
-    </button>
+    </RouterLink>
     </div>
   </div>
 </div>
@@ -36,7 +37,9 @@
     <h2 class="card-title"> Student </h2>
     
 <div v-for="advisees in advisor?.advisees" :key="advisees.id" class="text-left">
-  <div class="flex items-center px-1 py-2 text-gray-700 text-3xl font-bold border-b-2 border-gary-400 w-full hover:bg-gray-200 hover:rounded-md"> 
+  <RouterLink
+      :to="{ name: 'student-detail', params: { id: advisor?.id } }"
+   class="flex items-center px-1 py-2 text-gray-700 text-3xl font-bold border-b-2 border-gary-400 w-full hover:bg-gray-200 hover:rounded-md"> 
     <figure class="mr-3">
       <img  v-for="image in advisees?.images" :key="image" :src="image" class="w-12 h-15 rounded-full">
     </figure>
@@ -44,7 +47,7 @@
       <p class="text-sm mt-1 text-gray-400">{{ advisees.studentID }}</p>
       <span class="font-semibold text-lg">{{advisees.name}} {{advisees.surname}}</span>
     </span>
-  </div>
+</RouterLink>
 </div>
 </div>
  </div>

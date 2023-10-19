@@ -58,7 +58,7 @@
     department: '',
     images: [],
     academicPosition: '',
-    advisees: [{ id: 1,name: '',studentID:'',surname: ''}],
+    advisees: [{ id: 1,name: '',studentID:'',surname: '',images: []}],
   })
 //   const advisees = ref<AdviseesStudent[]>([])
 // StudentService.getStudent()
