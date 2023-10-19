@@ -9,7 +9,7 @@ import SignInView from '@/views/SignInView.vue'
 import StudentFormView from '@/views/StudentFormView.vue'
 import AdvisorFormView from '@/views/AdvisorFormView.vue'
 import EditAdvisorForm from '@/views/EditAdvisorFormView.vue'
-
+import AnnouncementView from '@/views/AnnouncementView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +38,13 @@ const router = createRouter({
       props: true,
     },
 
+    {
+      path: "/announcement",
+      name: "announcement",
+      component: AnnouncementView,
+      props: true,
+    },
+
 
     {
       path: "/Signup",
@@ -45,6 +52,7 @@ const router = createRouter({
       component: SignUpView,
       props: true,
     },
+
     {
       path: "/Signin",
       name: "Signin",

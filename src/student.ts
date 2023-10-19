@@ -22,3 +22,8 @@ export interface StudentCourse{
     courseID: string
     description:string
 }
+export interface StudentLogin{
+    name: string
+    images: string[]
+    roles: string[] 
+}

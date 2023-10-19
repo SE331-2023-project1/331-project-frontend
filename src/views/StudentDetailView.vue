@@ -80,7 +80,6 @@
 </template>
 <script setup lang="ts">
     import { ref } from 'vue'
-    import type { Ref } from 'vue'
     import type { StudentInfo } from '@/student';
     import StudentService from '@/services/StudentService';
     const student = ref<StudentInfo | null>(null)
