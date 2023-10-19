@@ -31,7 +31,7 @@
 </div>
 
 
-<div class="card w-full h-full ml-2 mr-20">
+<div class="card w-full =x ml-2 mr-20">
 <div class="card w-full h-full bg-base-100 shadow-2xl mt-5 ml-5 mr-10">
 
   <div class="card-body items-left text-left">
@@ -53,7 +53,7 @@
 
 </div>
   </div>
-  <div class="card w-full h-full shadow-2xl mt-5 ml-5 mr-10">
+  <div class="card w-full shadow-2xl mt-5 ml-5 mr-10">
   <figure class="px-2 pt-2">
   </figure>
   <div class="card-body items-left text-left">

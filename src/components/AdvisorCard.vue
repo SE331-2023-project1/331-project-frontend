@@ -2,7 +2,7 @@
     <RouterLink :to="{ name: 'advisor-detail', params: { id: advisor?.id } }">
       <div class="card card-side h-40 bg-base-100 shadow-2xl p-0 mt-5 mr-10 hover:bg-gray-100">
         <figure class="px-10">
-          <img v-for="image in advisor?.images" :key="image" :src="image" class="w-20 h-25 rounded-md"/>
+          <img v-for="image in advisor?.images" :key="image" :src="image" class="w-20 h-20 rounded-md"/>
         </figure>
         <div class="card-body">
           <h2 class="card-title text-gray-600"> {{ advisor?.name }} {{ advisor?.surname }}</h2>

@@ -31,16 +31,16 @@
   </div>
 </div>
 
-<div class="card w-full h-full shadow-2xl mt-5 ml-5 mr-10">
-  <div class="card-body items-left text-left ">
+<div class="card w-full  shadow-2xl mt-5 ml-5 mr-10">
+  <div class="card-body items-left text-left">
     <h2 class="card-title"> Student </h2>
     
 <div v-for="advisees in advisor?.advisees" :key="advisees.id" class="text-left">
-  <div class="flex items-center"> 
+  <div class="flex items-center px-1 py-2 text-gray-700 text-3xl font-bold border-b-2 border-gary-400 w-full hover:bg-gray-200 hover:rounded-md"> 
     <figure class="mr-3">
       <img  v-for="image in advisees?.images" :key="image" :src="image" class="w-12 h-15 rounded-full">
-    </figure><!-- Use flex to align image and text -->    
-    <span class="inline-block w-full bg-white border border-gray-400 rounded-md px-3 py-2 text-sm text-gray-800 hover:bg-gray-100">
+    </figure>
+    <span class="">
       <p class="text-sm mt-1 text-gray-400">{{ advisees.studentID }}</p>
       <span class="font-semibold text-lg">{{advisees.name}} {{advisees.surname}}</span>
     </span>
