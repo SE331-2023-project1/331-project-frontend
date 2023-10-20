@@ -7,19 +7,19 @@
             <form @submit.prevent="editStudentInformation" name="student_application" id="student_application" action="" class="py-4 px-8">
                 <div class="mb-4">
                     <label class="block text-gray-600 text-sm font-bold mb-2" for="student_id">Student ID:</label>
-                    <input v-model="student.studentID" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="student_id" id="student_id" placeholder="Enter Student ID">
+                    <input v-model="student.studentID" :placeholder="student_keep?.studentID" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="student_id" id="student_id" >
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-600 text-sm font-bold mb-2" for="student_name">Student Name:</label>
-                    <input v-model="student.name" class="border rounded w-full py-1 px-3 text-gray-700 border-gray-300" type="text" name="student_name" id="student_name" placeholder="Enter Student Name">
+                    <input v-model="student.name" :placeholder="student_keep?.name" class="border rounded w-full py-1 px-3 text-gray-700 border-gray-300" type="text" name="student_name" id="student_name">
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-600 text-sm font-bold mb-2" for="student_name">Student Surname:</label>
-                    <input v-model="student.surname" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="student_name" id="student_name" placeholder="Enter Student Surname">
+                    <input v-model="student.surname" :placeholder="student_keep?.surname" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="student_name" id="student_name">
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-600 text-sm font-bold mb-2" for="course_name">Department:</label>
-                    <input v-model="student.department" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="course_name" id="department" placeholder="Enter Student Department">
+                    <input v-model="student.department" :placeholder="student_keep?.department" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="course_name" id="department">
                     <p id="error_creater_id"></p>
                 </div>
 
@@ -35,8 +35,9 @@
                 </div>
                 <div class="mb-4 w-20 ml-auto">
                 <button type="submit" class="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-2 rounded hover:bg-gradient-to-r hover:from-red-500 hover:to-orange-600 transition duration-300">ADD</button>
-                </div>
+                </div>     
             </form>
+            {{ student_keep }}
         </div>
     </div>
 </div>
@@ -54,7 +55,9 @@ import ImageUpload from '@/components/ImageUpload.vue';
 
 const store = useMessageStore()
 const router = useRouter()
-
+const props = defineProps({
+        id: String
+    })
 const student = ref<StudentInfo>({
   id: 0,
   studentID: '',
@@ -62,10 +65,10 @@ const student = ref<StudentInfo>({
   surname: '',
   department: '',
   images: [],
-  advisor: { id: 0, academicPosition: '', name: '', surname: '', images: [], department: '' },
+  advisor: { id: 1, academicPosition: '', name: '', surname: '', images: [], department: '' },
   courses: [{ id: 1, name: '', courseID: '', description: '' }],
 })
-
+const student_keep = ref<StudentInfo | null>(null)
 const advisors = ref<StudentAdvisor[]>([])
 AdvisorService.getAdvisors()
   .then((response) => {
@@ -74,11 +77,14 @@ AdvisorService.getAdvisors()
   .catch(() => {
     router.push({ name: 'network-error' })
   })
+  StudentService.getStudentByID(Number(props.id)).then((response) => {
+    student_keep.value = response.data
+    }).catch(error => {
+        console.log(error)
+    })
 
   function editStudentInformation() {
-  console.log(student.value);
-  // Call your StudentService function to edit the student information
-  StudentService.editStudentInformation(student.value)
+  StudentService.editStudentInformation(Number(props.id),student.value)
     .then((response) => {
       console.log(response.data);
       router.push({

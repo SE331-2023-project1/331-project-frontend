@@ -2,9 +2,10 @@
   <!-- component -->
   <div class="min-h-screen h-10 bg-white flex">
     <div class="w-full mt-7 max-w-6xl">
+      
         <div class="bg-white rounded-xl shadow-xl border ">
             <div class="px-8 py-4 text-gray-700 text-3xl font-bold shadow-xl shadow-gray-200  border-red-400">Edit Information</div>
-            <form @submit.prevent="editAdvisorInformation" name="advisor_application" id="advisor_application" action="" class="py-4 px-8">
+            <form @submit.prevent="edit" name="advisor_application" id="advisor_application" action="" class="py-4 px-8">
               <div class="mb-4">
                       <label class="block text-gray-600 text-sm font-bold mb-2" for="advisor_name">Advisor Name:</label>
                       <input v-model="advisor.name" class="border rounded w-full py-1 px-3 text-gray-700 border-gray-300" type="text" name="advisor_name" id="advisor_name" placeholder="Enter Advisor Name">
@@ -49,6 +50,9 @@ import ImageUpload from '@/components/ImageUpload.vue';
 
 const store = useMessageStore()
 const router = useRouter()
+const props = defineProps({
+        id: String
+    })
 
 const advisor = ref<AdvisorInfo>({
     id: 0,
@@ -60,14 +64,14 @@ const advisor = ref<AdvisorInfo>({
     advisees: [{ id: 1,name: '',studentID:'',surname: '',images: []}],
   })
 
-  function editAdvisorInformation() {
-  console.log(advisor.value);
-  // Call your StudentService function to edit the student information
-  AdvisorService.editAdvisorInformation(advisor.value)
+  const advisor_keep = ref<AdvisorInfo | null>(null)
+
+  function edit() {
+  AdvisorService.edit(Number(props.id),advisor.value)
     .then((response) => {
       console.log(response.data);
       router.push({
-        name: 'adviser-detail',
+        name: 'advisor-detail',
         params: { id: response.data.id }
       });
       store.updateMessage('You have successfully edited the advisor details for ' + response.data.name);
@@ -79,6 +83,7 @@ const advisor = ref<AdvisorInfo>({
       router.push({ name: 'network-error' });
     });
 }
+
 
 
 </script>
