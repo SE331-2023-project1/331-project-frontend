@@ -10,7 +10,7 @@ import StudentFormView from '@/views/StudentFormView.vue'
 import AdvisorFormView from '@/views/AdvisorFormView.vue'
 import EditAdvisorForm from '@/views/EditAdvisorFormView.vue'
 import AnnouncementView from '@/views/AnnouncementView.vue'
-
+import AddPostView from '@/views/AddPostView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,7 +45,12 @@ const router = createRouter({
       component: AnnouncementView,
       props: true,
     },
-
+    {
+      path: "/add-post",
+      name: "add-post",
+      component: AddPostView,
+      props: true,
+    },
 
     {
       path: "/Signup",

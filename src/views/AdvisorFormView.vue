@@ -15,12 +15,12 @@
                   </div>
                   <div class="mb-4">
                       <label class="block text-gray-600 text-sm font-bold mb-2" for="course_name">Department:</label>
-                      <input v-model="advisor.department" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="course_name" id="department" placeholder="Enter Your Department">
+                      <input v-model="advisor.department" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="course_name" id="department" placeholder="Enter Advisor Department">
                       <p id="error_creater_id"></p>
                   </div>
                   <div class="mb-4">
-                      <label class="block text-gray-600 text-sm font-bold mb-2" for="course_name">academicPosition:</label>
-                      <input v-model="advisor.academicPosition" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="course_name" id="academicPosition" placeholder="Enter Your academicPosition">
+                      <label class="block text-gray-600 text-sm font-bold mb-2" for="course_name">Academic Position:</label>
+                      <input v-model="advisor.academicPosition" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="course_name" id="academicPosition" placeholder="Enter Advisor Academic Position">
                       <p id="error_creater_id"></p>
                   </div>
                   <div class="mb-4">
