@@ -12,7 +12,7 @@
 <div class="flex card w-96 bg-base-100 shadow-2xl mt-5">
 
   <figure class="px-10 pt-7">
-          <img v-for="image in advisor?.images" :key="image" :src="image" alt="Shoes" class="rounded-md" />
+  <img v-for="image in advisor?.images" :key="image" :src="image" alt="Shoes" class="rounded-md" />
   </figure>
   <div class="card-body mt-2">
     <h3 class="text-gray-500 "><span class="font-bold">Name:</span> <span class="text-gray-400">{{ advisor?.name }}</span></h3>
@@ -24,15 +24,20 @@
     <div class="card-actions justify-end">
     </div>
     <div class="flex justify-start ml-32">
-    <button class="btn btn-circle px-1.5 ml-12 mt-2 bg-gray-600 hover:bg-gray-400"><svg class="h-7 w-7 text-white text-center"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
-</svg>
-    </button>
+      <button class="rounded-md px-2 mr-5 ml-2 min-w-full h-9 bg-gradient-to-r from-red-500 to-orange-500 hover:bg-gray-400 text-white">
+          Comment</button>
     <RouterLink
-            :to="{ name: 'edit-advisor', params: { id: advisor?.id } } " class="btn btn-circle px-1.5 ml-2 mt-2 bg-gray-600 hover:bg-gray-400"><svg class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-    </svg>
-    </RouterLink>
+          :to="{ name: 'edit-advisor', params: { id: advisor?.id } }"
+          class="btn-sm btn-circle px-1 py-1 bg-gray-600 bg-opacity-90 hover:bg-gray-400 top-5 ml-20 right-10 absolute border-2 border-white dark:border-gray-800 rounded-full"
+          ><svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+              />
+            </svg>
+        </RouterLink>
     </div>
   </div>
 </div>
@@ -61,8 +66,6 @@
  
  </div>
 
-<!--   
-</div> -->
 </template>
 <script setup lang="ts">
     import { ref } from 'vue'

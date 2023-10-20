@@ -8,20 +8,20 @@
             <form @submit.prevent="edit" name="advisor_application" id="advisor_application" action="" class="py-4 px-8">
               <div class="mb-4">
                       <label class="block text-gray-600 text-sm font-bold mb-2" for="advisor_name">Advisor Name:</label>
-                      <input v-model="advisor.name" class="border rounded w-full py-1 px-3 text-gray-700 border-gray-300" type="text" name="advisor_name" id="advisor_name" placeholder="Enter Advisor Name">
+                      <input v-model="advisor.name" :placeholder="advisor_keep?.name" class="border rounded w-full py-1 px-3 text-gray-700 border-gray-300" type="text" name="advisor_name" id="advisor_name" >
                   </div>
                   <div class="mb-4">
                       <label class="block text-gray-600 text-sm font-bold mb-2" for="advisor_name">Advisor Surname:</label>
-                      <input v-model="advisor.surname" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="advisor_surname" id="advisor_surname" placeholder="Enter Advisor Surname">
+                      <input v-model="advisor.surname" :placeholder="advisor_keep?.surname" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="advisor_surname" id="advisor_surname">
                   </div>
                   <div class="mb-4">
                       <label class="block text-gray-600 text-sm font-bold mb-2" for="course_name">Department:</label>
-                      <input v-model="advisor.department" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="course_name" id="department" placeholder="Enter Your Department">
+                      <input v-model="advisor.department" :placeholder="advisor_keep?.department" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="course_name" id="department">
                       <p id="error_creater_id"></p>
                   </div>
                   <div class="mb-4">
                       <label class="block text-gray-600 text-sm font-bold mb-2" for="course_name">academicPosition:</label>
-                      <input v-model="advisor.academicPosition" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="course_name" id="academicPosition" placeholder="Enter Your academicPosition">
+                      <input v-model="advisor.academicPosition" :placeholder="advisor_keep?.academicPosition" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="course_name" id="academicPosition">
                       <p id="error_creater_id"></p>
                   </div>
                   <div class="mb-4">
@@ -65,6 +65,12 @@ const advisor = ref<AdvisorInfo>({
   })
 
   const advisor_keep = ref<AdvisorInfo | null>(null)
+
+  AdvisorService.getAdvisorByID(Number(props.id)).then((response) => {
+    advisor_keep.value = response.data
+    }).catch(error => {
+        console.log(error)
+    })
 
   function edit() {
   AdvisorService.edit(Number(props.id),advisor.value)

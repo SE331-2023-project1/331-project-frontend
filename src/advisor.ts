@@ -15,3 +15,12 @@ export interface AdviseesStudent{
     surname: string
     images: string[]
 }
+
+export interface advisorRegister{
+    username: string
+    email: string
+    firstname: string
+    surname : string
+    password : string
+    roles: string[] 
+}

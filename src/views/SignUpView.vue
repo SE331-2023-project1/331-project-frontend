@@ -45,11 +45,11 @@
                 <input autocomplete="off" id="password" name="password" type="password" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 border-t-white border-l-white border-r-white text-gray-900 focus:outline-none focus:borer-rose-500 mt-5" placeholder="Password" />
                 <label for="email" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-6 peer-focus:text-gray-600 peer-focus:text-sm mt-5">Password</label>
               </div>
-              <RouterLink :to="{ name: 'Signin'}" >
+              <RouterLink :to="{ name: 'Signup'}" >
                   <label class="text-xs font-semibold text-red-600 underline">Do have an account? Sign In </label>
 				</RouterLink>
               <div class="flex justify-center">
-                  <button type="submit" class="w-full mt-5 font-semibold max-w-md bg-gradient-to-r from-red-400 to-orange-500 text-sm text-white rounded-md px-5 py-2">SIGN UP</button>
+                  <button type="submit" class="w-full mt-5 font-semibold max-w-md bg-gradient-to-r from-red-400 to-orange-500 text-sm text-white rounded-md px-5 py-2">SIF</button>
                 </div>
             </div>
           </div>

@@ -34,7 +34,7 @@
 
                 </div>
                 <div class="mb-4 w-20 ml-auto">
-                <button type="submit" class="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-2 rounded hover:bg-gradient-to-r hover:from-red-500 hover:to-orange-600 transition duration-300">ADD</button>
+                <button type="submit" class="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-2 rounded hover:bg-gradient-to-r hover:from-red-500 hover:to-orange-600 transition duration-300">Edit</button>
                 </div>     
             </form>
         </div>
