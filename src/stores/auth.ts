@@ -2,6 +2,8 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import type { AxiosInstance } from "axios";
 import type { StudentLogin } from "@/student";
+import type { advisorRegister } from '@/advisor'
+
 const apiClient: AxiosInstance = axios.create({
     baseURL: import.meta.env.VITE_BACKEND_URL,
     withCredentials: false,
@@ -13,7 +15,8 @@ const apiClient: AxiosInstance = axios.create({
 export const useAuthStore = defineStore('auth', {
     state: () => ({
         token: null as string | null,
-        user: null as StudentLogin | null
+        user: null as StudentLogin | null,
+        
     }),
     getters: {
         currentUserName(): string {

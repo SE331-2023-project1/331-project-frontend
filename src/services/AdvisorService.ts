@@ -18,8 +18,9 @@ export default{
         return apiClient.get<AdvisorInfo[]>('/advisors')
     },
     edit(id:number,advisor: AdvisorInfo): Promise<AxiosResponse<AdvisorInfo>> {
-        return apiClient.post<AdvisorInfo>('/advisors/edit' +id.toString(), advisor);
+        return apiClient.post<AdvisorInfo>('/advisors/edit/' +id.toString(), advisor);
     },
+
 //     ,
 //     saveAdvisor(event: AdvisorInfo): Promise<AxiosResponse<AdvisorInfo>>{
 //         return apiClient.post<AdvisorInfo>('/events',event)

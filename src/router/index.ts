@@ -60,12 +60,6 @@ const router = createRouter({
       component: SignInView,
       props: true,
     },
-    // {
-    //   path: "/announce",
-    //   name: "announce",
-    //   component: AnnounceMentView,
-    //   props: true,
-    // },
     
   {
     path: "/advisor/:id",
@@ -87,16 +81,12 @@ const router = createRouter({
       props: true,
   },
   {
-    path: "/edit-advisor/{id}",
+    path: "/edit-advisor/:id",
     name: "edit-advisor",
     component: EditAdvisorForm,
     props: true,
   },
-    
-
-  ]
-
-  
+  ]  
 })
 
 export default router
