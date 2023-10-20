@@ -1,9 +1,14 @@
 <template>
-    <div>
-        <h1 class="text-4xl mt-5 font-bold text-gray-700"> Advisor Detail </h1>
-    </div>
+<div class="flex items-center justify-between">
+    <h1 class="text-4xl mt-5 font-bold text-gray-700"> Advisor Detail </h1>
+    <RouterLink :to="{ name: 'add-post' } "
+    class="btn bg-gradient-to-r text-white from-red-500 to-orange-500 flex items-center mt-5 mr-10 px-6 py-3">Add Post
+  </RouterLink>
+</div>
+
+
 <div class="flex">
-  
+
 <div class="flex card w-96 bg-base-100 shadow-2xl mt-5">
 
   <figure class="px-10 pt-7">
@@ -49,8 +54,11 @@
     </span>
 </RouterLink>
 </div>
+
 </div>
+
  </div>
+ 
  </div>
 
 <!--   

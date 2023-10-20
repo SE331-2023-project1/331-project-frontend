@@ -42,7 +42,7 @@
               </div>
               
               <div class="ml-80">
-                <button class="w-full bg-gradient-to-r from-red-400 to-orange-500 text-sm text-white rounded-md px-5 py-2 mt-7">LOGIN</button>
+                <button class="w-full bg-gradient-to-r from-red-400 to-orange-500 text-sm text-white rounded-md px-5 py-2 mt-7">SIGN UP</button>
               </div>
             </div>
           </div>

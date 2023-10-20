@@ -1,6 +1,6 @@
 <template>
     <RouterLink :to="{ name: 'advisor-detail', params: { id: advisor?.id } }">
-      <div class="card card-side h-40 bg-base-100 shadow-2xl p-0 mt-5 mr-10 hover:bg-gray-100">
+      <div class="card card-side h-40 bg-base-100 shadow-2xl p-0 mt-5 mr-12 hover:bg-gray-100 border">
         <figure class="px-10">
           <img v-for="image in advisor?.images" :key="image" :src="image" class="w-20 h-20 rounded-md"/>
         </figure>
@@ -13,7 +13,6 @@
           </div>
       </div>
         </div>
-  
     </RouterLink>
   </template>
   <script setup lang="ts">

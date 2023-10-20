@@ -39,6 +39,7 @@
         + Add Advisor
         </RouterLink>
     </div>
+    
     </div>
     <div class="">
       <AdvisorCard v-for="advisor in advisors" :key="advisor.id" :advisor="advisor"></AdvisorCard>

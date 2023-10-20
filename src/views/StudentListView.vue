@@ -25,17 +25,19 @@
             />
           </svg>
         </div>
-        <!-- <input
+        <input
           v-model="keyword"
           @input="updateKeyword"
           type="search"
           id="default-search"
           class="block w-96 p-2 pl-12 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Search"
-        /> -->
-        <div>
+        />
+      </div>
+
+        <!-- <div>
     <BaseInput v-model="keyword" label="Search..." @input="updateKeyword" />
-  </div>      </div>
+  </div>      </div> -->
       <div class="flex items-center ml-5 justify-end">
         <p class="text-gray-700 text-sm mr-2 font-semibold">{{ authStore.currentUserName }}</p>
 
