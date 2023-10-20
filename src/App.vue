@@ -1,20 +1,4 @@
-<script setup lang="ts"></script>
-
 <template>
-  <!-- <div class="navbar bg-red-500">
-      <div class="flex-1 items-center justify-center">
-        <svg class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-          />
-        </svg>
-
-        <a class="ml-2 normal-case font-bold text-3xl text-white">SSLT</a>
-      </div>
-    </div> -->
   <div class="flex">
     <!-- Drawer on the left -->
     <div class="w-1/6">
@@ -34,7 +18,7 @@
         </div>
         <div class="drawer-side min-h-screen drop-shadow-3xl rounded-br-6xl">
           <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
-          <ul class="menu p-4 w-30 min-h-full bg-red-500 text-white rounded-br-6xl">
+          <ul v-if="authStore.currentUserName" class="menu p-4 w-30 min-h-full bg-red-500 text-white rounded-br-6xl">
             
             <!-- Sidebar content here -->
             <li class="flex flex-col items-center mt-20">
@@ -105,8 +89,7 @@
             </RouterLink>                        
             </li>
 
-
-            <li class="flex flex-col items-center mt-5">
+            <!-- <li class="flex flex-col items-center mt-5">
               <RouterLink
                 :to="{ name: 'Signin' }"
                 class="inline-flex flex-col items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
@@ -127,9 +110,9 @@
 
                 <span class="mt-auto text-white">Sign In</span>
               </RouterLink>
-            </li>
+            </li> -->
             
-            <li class="flex flex-col items-center mt-5">              
+            <!-- <li class="flex flex-col items-center mt-5">              
               <RouterLink
                 :to="{ name: 'Signup' }"
                 class="inline-flex flex-col items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
@@ -151,10 +134,31 @@
 
                 <span class="mt-auto text-white">Sign Up</span>
               </RouterLink>
-            </li>
+            </li> -->
+            <li class="flex flex-col items-center mt-5">              
+              <div
+              @click="logout"
+                class="inline-flex flex-col items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  class="h-6 w-6 text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="8.5" cy="7" r="4" />
+                  <line x1="20" y1="8" x2="20" y2="14" />
+                  <line x1="23" y1="11" x2="17" y2="11" />
+                </svg>
 
+                <span class="mt-auto text-white">Logout</span>
+              </div>
+            </li>
           </ul>
-          
         </div>
         
       </div>
@@ -164,3 +168,29 @@
     </div>
   </div>
 </template>
+<script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
+import { storeToRefs } from 'pinia';
+import { useMessageStore } from './stores/message';
+import { useAuthStore } from './stores/auth';
+import { useRouter } from 'vue-router';
+
+const store = useMessageStore()
+const { message } = storeToRefs(store)
+const authStore = useAuthStore()
+const router = useRouter()
+const token = localStorage.getItem('token')
+const user = localStorage.getItem('user')
+
+if (token && user){
+  authStore.reload(token,JSON.parse(user))
+}else{
+  authStore.logout()
+}
+
+function logout(){
+  authStore.logout()
+  router.push({ name: 'Signin'})
+}
+
+</script>

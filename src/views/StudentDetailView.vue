@@ -13,7 +13,7 @@
         />
         <RouterLink
           :to="{ name: 'edit-student', params: { id: student?.id } }"
-          class="btn-sm btn-circle px-1 py-1 bg-gray-600 bg-opacity-90 hover:bg-gray-400 top-5 ml-20 right-10 absolute border-2 border-white dark:border-gray-800 rounded-full"
+          class="btn-sm btn-circle px-1 py-1 bg-red-600 bg-opacity-90 hover:bg-gray-400 top-5 ml-20 right-10 absolute border-2 border-white dark:border-gray-800 rounded-full"
           ><svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 stroke-linecap="round"

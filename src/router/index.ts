@@ -22,6 +22,14 @@ const router = createRouter({
       props: (route) => ({
         page: parseInt((route.query?.page as string) || "1"),
       }),
+      beforeEnter(){
+        const user = localStorage.getItem('user')
+        if(user == null){
+          router.push({
+            name: 'Signin'
+          })
+        }
+      }
     },
     {
       path: "/advisor",

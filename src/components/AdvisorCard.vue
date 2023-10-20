@@ -9,7 +9,6 @@
           <h3 class="text-gray-400"> {{ advisor?.department }}</h3>
           <h3 class="text-gray-400"> {{ advisor?.academicPosition }}</h3>
           <div class="mt-1 flex flex-row items-center space-x-1">
-          
           </div>
       </div>
         </div>

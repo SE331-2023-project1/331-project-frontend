@@ -59,6 +59,7 @@
     images: [],
     academicPosition: '',
     advisees: [{ id: 1,name: '',studentID:'',surname: '',images: []}],
+    file: []
   })
 //   const advisees = ref<AdviseesStudent[]>([])
 // StudentService.getStudent()

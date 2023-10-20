@@ -37,7 +37,6 @@
                 <button type="submit" class="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-2 rounded hover:bg-gradient-to-r hover:from-red-500 hover:to-orange-600 transition duration-300">ADD</button>
                 </div>     
             </form>
-            {{ student_keep }}
         </div>
     </div>
 </div>

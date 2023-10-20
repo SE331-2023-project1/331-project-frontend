@@ -4,6 +4,7 @@ export interface AdvisorInfo{
     name: string
     surname: string
     images: string[]
+    file: string[]
     department: string
     advisees : AdviseesStudent[]
 }
