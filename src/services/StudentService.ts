@@ -13,8 +13,8 @@ export default{
     saveStudent(student: StudentInfo): Promise<AxiosResponse<StudentInfo>>{
         return apiClient.post<StudentInfo>('/students',student)
     },
-    editStudentInformation(student: StudentInfo): Promise<AxiosResponse<StudentInfo>> {
-        return apiClient.post<StudentInfo>('/students/' +student.id, student);
+    editStudentInformation(id:number,student: StudentInfo): Promise<AxiosResponse<StudentInfo>> {
+        return apiClient.post<StudentInfo>('/students/editInformation/' +id.toString(), student);
     },
 
     getStudentsByKeyword(keyword: string, perPage: number, page: number): Promise<AxiosResponse<StudentInfo[]>> {
