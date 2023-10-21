@@ -38,11 +38,12 @@
         </div>
 
         <!-- Submit Button and Character Limit Section -->
-        <div class="flex items-center justify-end mt-5">
+        <div class="flex items-center justify-end mt-5 animate-fade-right ">
           <button
             @click="confirmFile"
             type="submit"
-            class="flex justify-center items-center bg-red-500 focus:outline-none focus:shadow-outline-blue text-white py-2 px-4 rounded-md transition duration-300 gap-2"
+            class="flex justify-center items-center bg-red-500 focus:outline-none focus:shadow-outline-blue text-white py-2 px-4 rounded-md transition duration-300 gap-2 animate-fade-right
+"
           >
             Post
             <svg
