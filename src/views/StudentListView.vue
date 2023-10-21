@@ -81,24 +81,30 @@
     <StudentCard v-for="student in students" :key="student.id" :student="student"></StudentCard>
   </div>
   <div class="flex justify-center mt-10">
-    <div class="flex items-center">
+    <div class="flex items-center 
+
+">
       <RouterLink
         :to="{ name: 'home', query: { page: page - 1 } }"
         rel="prev"
         v-if="page != 1"
         id="page-prev"
-        class="join-item text-center rounded-bl-md rounded-tl-md px-6 py-2 bg-gradient-to-r from-orange-500 to-red-500 hover:bg-gray-500 text-white "
+        class="join-item text-center rounded-bl-md rounded-tl-md px-6 py-2 bg-gradient-to-r from-orange-500 to-red-500 hover:bg-gradient-to-r hover:from-orange-400 hover:to-red-400 text-white animate-fade-right
+ "
       >
         « PREV
       </RouterLink>
 
-      <div class="flex items-center mr-10">
+      <div class="flex items-center mr-10 
+
+">
         <RouterLink
           :to="{ name: 'home', query: { page: page + 1 } }"
           rel="next"
           v-if="hasNextPage"
           id="page-next"
-          class=" join-item text-center rounded-br-md rounded-tr-md px-6 py-2 bg-gradient-to-r from-red-500 to-orange-500 hover:bg-gray-500 text-white "
+          class=" join-item text-center rounded-br-md rounded-tr-md px-6 py-2 bg-gradient-to-r from-red-500 to-orange-500 hover:bg-gradient-to-r hover:from-orange-400 hover:to-red-400 text-white animate-fade-left
+"
         >
           NEXT »
         </RouterLink>

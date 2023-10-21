@@ -11,6 +11,8 @@ import AdvisorFormView from '@/views/AdvisorFormView.vue'
 import EditAdvisorForm from '@/views/EditAdvisorFormView.vue'
 import AnnouncementView from '@/views/AnnouncementView.vue'
 import AddPostView from '@/views/AddPostView.vue'
+import AddCommentView from '@/views/AddCommentView.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -51,6 +53,12 @@ const router = createRouter({
       path: "/announcement",
       name: "announcement",
       component: AnnouncementView,
+      props: true,
+    },
+    {
+      path: "/add-comment",
+      name: "add-comment",
+      component: AddCommentView,
       props: true,
     },
     {
