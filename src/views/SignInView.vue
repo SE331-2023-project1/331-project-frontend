@@ -1,12 +1,9 @@
 <template>
-	<!-- component -->
-	<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12 mr-52 z-50">
-	<div class="max-w-screen-xl mx-auto">
-    <div class="relative py-4">
-      <div class="absolute inset-0 bg-gradient-to-r from-red-400 to-orange-500 transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl shadow-2xl"></div>
-      <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20  sm:px-20">
-        <div class="max-w-md mx-auto">
-          <div class="flex justify-center">
+	<!-- Component -->
+	<div class="absolute inset-0 bg-gradient-to-r from-red-400 to-orange-500 transform  shadow-2xl">
+	<div class="min-h-screen flex items-center justify-center  py-12 px-4 sm:px-6 lg:px-8">
+		<div class="max-w-md w-full h-full p-10 border rounded-br-3xl rounded-tl-3xl bg-white">
+			<div class="flex justify-center">
             <div class="rounded-full">
               <svg class="h-8 w-8 rounded-full px-1.5 shadow-xl shadow-gray-300 text-white bg-gradient-to-r from-red-400 to-orange-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" />
@@ -19,38 +16,55 @@
               SSLT
             </h1>
           </div>
-          <div>
-            <h1 class="text-2xl font-bold mt-5 text-gray-600">SIGN IN YOUR ACCOUNT</h1>
-          </div>
-          <div class="divide-y divide-gray-200">
-            <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-              <form @submit.prevent="onSubmit">
-                <div class="relative">
-                  <input autocomplete="off" v-model="username" :class="{ 'border-rose-500': errors['username'] }" id="email" name="email" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 border-t-white border-l-white border-r-white text-gray-900 focus:outline-none focus:border-rose-500" placeholder="Username" />
-                  <label for="email" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-6 peer-focus:text-gray-600 peer-focus:text-sm">Username</label>
-                  <span v-if="errors['username']" class="text-red-500">{{ errors['username'] }}</span>
-                </div>
-                <div class="relative">
-                  <input autocomplete="off" v-model="password" :class="{ 'border-rose-500': errors['password'] }" id="password" name="password" type="password" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 border-t-white border-l-white border-r-white text-gray-900 focus:outline-none focus:border-rose-500 mt-8" placeholder="Password" />
-                  <label for="password" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-6 peer-focus:text-gray-600 peer-focus:text-sm mt-8">Password</label>
-                  <span v-if="errors['password']" class="text-red-500">{{ errors['password'] }}</span>
-                </div>
-					<RouterLink :to="{ name: 'Signup'}" >
-                  <label class="text-xs font-semibold text-red-600 underline">Don't have an account? Sign Up</label>
-				</RouterLink>
-                <div class="flex justify-center mt-6">
-                  <button type="submit" class="w-full font-semibold max-w-md bg-gradient-to-r from-red-400 to-orange-500 text-sm text-white rounded-md px-5 py-2">LOGIN</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+		
+		<div>
+		  <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+			SIGN IN YOUR ACCOUNT
+		  </h2>
+		</div>
+		<form class="mt-8 space-y-6" @submit.prevent="onSubmit">
+		  <div class="rounded-md shadow-sm -space-y-px">
+			<div>
+			  <label for="email" class="sr-only">Username</label>
+			  <input v-model="username" :class="{ 'border-red-500': errors['username'] }" id="email" name="email" type="text" autocomplete="off" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-orange-500 focus:border-orange-500 focus:z-10 sm:text-sm" placeholder="Username">
+			  <span v-if="errors['username']" class="text-red-500 text-sm">{{ errors['username'] }}</span>
+			</div>
+			<div>
+			  <label for="password" class="sr-only">Password</label>
+			  <input v-model="password" :class="{ 'border-red-500': errors['password'] }" id="password" name="password" type="password" autocomplete="off" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-orange-500 focus:border-orange-500 focus:z-10 sm:text-sm mt-8" placeholder="Password">
+			  <span v-if="errors['password']" class="text-red-500 text-sm">{{ errors['password'] }}</span>
+			</div>
+		  </div>
+  
+		  <div class="flex items-center justify-between">
+			<div class="flex items-center">
+			  <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded">
+			  <label for="remember_me" class="ml-2 block text-sm text-gray-900">
+				Remember me
+			  </label>
+			</div>
+  
+			<div class="text-sm">
+			  <a href="#" class="font-medium text-red-600 hover:text-red-500">
+				Forgot your password?
+			  </a>
+			</div>
+		  </div>
+  
+		  <div>
+			<button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-red-400 to-orange-500 hover:from-red-500 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 mt-8">
+			  LOGIN
+			</button>
+		  </div>
+		</form>
+		<RouterLink :to="{ name: 'Signup'}" class="text-sm text-center">
+		  <p class="text-gray-600 mt-5">Don't have an account? <a href="#" class="font-medium text-red-600 hover:text-red-500">Sign Up</a></p>
+		</RouterLink>
+	  </div>
+	</div>
 </div>
-
   </template>
+  
   
   <script setup lang="ts">
   import * as yup from 'yup';

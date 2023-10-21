@@ -4,16 +4,16 @@
     <h1 class="font-bold text-3xl">Add Post</h1>
   </div>
   <div class="flex items-center justify-center">
-    <div class="max-w-7xl mr-20 w-full bg-white p-8 shadow-xl">
+    <div class="max-w-7xl mr-20 w-full  bg-gray-800 p-8 shadow-2xl rounded-br-3xl rounded-tl-3xl ">
       <form>
         <!-- Post Content Section -->
         <div class="mb-6">
-          <label for="postContent" class="block text-gray-700 text-md font-bold mb-2">New Post</label>
+          <label for="postContent" class="block text-white text-md font-bold mb-2">New Post</label>
           <textarea
             id="postContent"
             name="postContent"
             rows="4"
-            class="w-full border-2 rounded-md px-4 py-2 leading-5 transition duration-150 ease-in-out text-sm resize-none focus:outline-none focus:border-blue-500"
+            class="w-full border-2 border-gray-300 rounded-md srounded-md px-4 py-2 leading-5 transition duration-150 ease-in-out text-sm resize-none focus:outline-none focus:border-blue-500"
             placeholder="Start a new conversation"
           ></textarea>
         </div>
@@ -22,7 +22,7 @@
           <div class="flex border-2 rounded-md border-gray-300  bg-gray-100 ">
             <div>
             </div>
-            <label for="fileInput" class=" bg-gray-700 w-30 px-4 py-2 hover:bg-gray-500">
+            <label for="fileInput" class=" bg-red-500 w-30 px-4 py-2 hover:bg-gray-500 rounded-sm">
               <div 
               class="flex" 
               >
@@ -42,7 +42,7 @@
           <button
             @click="confirmFile"
             type="submit"
-            class="flex justify-center items-center bg-gradient-to-r from-red-500 to-orange-500 hover:bg-red-500 focus:outline-none focus:shadow-outline-blue text-white py-2 px-4 rounded-md transition duration-300 gap-2"
+            class="flex justify-center items-center bg-red-500 focus:outline-none focus:shadow-outline-blue text-white py-2 px-4 rounded-md transition duration-300 gap-2"
           >
             Post
             <svg

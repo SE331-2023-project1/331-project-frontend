@@ -1,7 +1,30 @@
 <template>
-  <div>
+
+
+<div class="flex items-center justify-between sm:py-3 z-auto mr-12">
+  <div class="flex items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 mr-2 text-red-500 mt-5">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+</svg>
+
+
     <h1 class="text-4xl mt-5 font-bold text-gray-700">Student Detail</h1>
   </div>
+
+  <div class="flex items-center ml-12 mr-6 mt-5">
+    <p class="text-gray-700 text-sm mr-4 font-semibold">{{ authStore.currentUserName }}</p>
+
+    <div class="relative">
+      <img class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 mt-2" :src="authStore.userImage" alt="" />
+      <span class="relative flex h-3 w-3 bottom-10 left-8">
+        <span class="absolute w-full h-full bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+        <span class="relative inline-flex animate-pulse rounded-full h-3 w-3 bg-green-400"></span>
+      </span>
+    </div>
+  </div>
+</div>
+
+
   <div class="flex">
     <div class="flex card w-96 bg-base-100 shadow-2xl mt-5 border">
       <figure class="px-12 pt-9">
@@ -13,7 +36,7 @@
         />
         <RouterLink
           :to="{ name: 'edit-student', params: { id: student?.id } }"
-          class="btn-sm btn-circle px-1 py-1 bg-red-600 bg-opacity-90 hover:bg-gray-400 top-5 ml-20 right-10 absolute border-2 border-white dark:border-gray-800 rounded-full"
+          class="btn-sm btn-circle px-1 py-1 bg-red-600 bg-opacity-90 hover:bg-red-300 top-5 ml-20 right-10 absolute border-2 border-white dark:border-gray-800 rounded-full"
           ><svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 stroke-linecap="round"
@@ -43,7 +66,7 @@
         </h3>
         <div class="card-actions justify-end"></div>
         <div class="flex justify-start ml-32">
-          <button class="rounded-md px-2 mr-5 ml-2 min-w-full h-9 bg-gradient-to-r from-red-500 to-orange-500 hover:bg-gray-400 text-white">
+          <button class="rounded-md px-2 mr-5 ml-2 min-w-full h-9 bg-gradient-to-r from-red-500 to-orange-500 hover:bg-gradient-to-r hover:from-red-400 hover:to-red-500 text-white">
           Comment</button>
         </div>
       </div>
@@ -54,24 +77,23 @@
         <div class="card-body items-left text-left">
           <h2 class="card-title">Advisor</h2>
           <button
-            class="bg-white border border-gray-400 hover:bg-gray-300 mt-2 text-black py-2 px-4 rounded w-60"
+            class="transition duration-150 ease-in-out hover:-translate-y-1 hover:scale-11 duration-30 bg-gray-700 border-2 border-gray-300 hover:bg-gray-400 hover:shadow-xl  mt-2 text-black py-2 px-4 rounded-lg w-60"
           >
             <div class="flex items-center">
-              <div class="mr-5">
-                <figure class="px10">
+              <div class="mr-2">
+                <figure class="">
                   <img
                     v-for="image in student?.advisor.images"
                     :key="image"
                     :src="image"
-                    class="w-12 h-12 rounded-full"
-                  />
+                    class="w-12 h-12 p-1 rounded-full" />
                 </figure>
               </div>
-              <div class="text-left">
+              <div class="text-left text-white">
                 <p class="text-md font-semibold">
                   {{ student?.advisor.name }} {{ student?.advisor.surname }}
                 </p>
-                <p class="text-md text-gray-400">{{ student?.advisor.department }}</p>
+                <p class="text-md text-gray-300">{{ student?.advisor.department }}</p>
               </div>
             </div>
           </button>
@@ -100,6 +122,9 @@
 import { ref } from 'vue'
 import type { StudentInfo } from '@/student'
 import StudentService from '@/services/StudentService'
+import { useAuthStore } from '@/stores/auth'
+
+const authStore = useAuthStore()
 const student = ref<StudentInfo | null>(null)
 const props = defineProps({
   id: String

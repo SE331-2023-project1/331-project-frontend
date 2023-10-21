@@ -1,14 +1,23 @@
 <template>
-  <div class="flex items-center justify-between">
+<div>
+  <div class="flex items-center justify-between sm:py-3 z-auto mr-12 mb-8">
+    <div class="flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 mt-6 mr-2 text-red-500">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+</svg>
     <h1 class="text-4xl mt-5 font-bold text-gray-700">Student List</h1>
-    <div class="search flex items-center ml-5 mt-6 mr-12">
+
+
+</div>
+
+    <div class="search flex items-center ml-5 mt-6 mr-10">
       <label
         for="default-search"
         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
         >Search</label
       >
       <div class="relative">
-        <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none ">
           <svg
             class="w-5 h-5 text-gray-500 dark:text-gray-400"
             aria-hidden="true"
@@ -30,26 +39,30 @@
           @input="updateKeyword"
           type="search"
           id="default-search"
-          class="block w-96 p-2 pl-12 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Search"
+          class="block w-96 p-2 pl-12 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Search..."
         />
       </div>
 
         <!-- <div>
     <BaseInput v-model="keyword" label="Search..." @input="updateKeyword" />
   </div>      </div> -->
-      <div class="flex items-center ml-5 justify-end">
-        <p class="text-gray-700 text-sm mr-2 font-semibold">{{ authStore.currentUserName }}</p>
+      <div class="flex items-center ml-12 justify-end">
+        <p class="text-gray-700 text-sm mr-4 font-semibold">{{ authStore.currentUserName }}</p>
 
         <div class="relative">
-          <img
-            class="w-10 h-10 rounded-full"
+          <img class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 mt-2"
             :src="authStore.userImage"
             alt=""
           />
-          <span
-            class="top-0 left-7 absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"
-          ></span>
+          <!-- <span
+            class="top-0 left-7 absolute w-3.5 h-3.5 animate-ping bg-green-400 border-2 border-white dark:border-gray-800 rounded-full">
+            
+          </span> -->
+          <span class="relative flex h-3 w-3 bottom-10 left-8 ">
+      <span class="absolute w-full h-full bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+      <span class="relative inline-flex animate-pulse rounded-full h-3 w-3 bg-green-400"></span>
+      </span>
         </div>
       </div>
     </div>
@@ -67,32 +80,30 @@
   <div class="">
     <StudentCard v-for="student in students" :key="student.id" :student="student"></StudentCard>
   </div>
-  <div class="flex justify-center mt-5">
+  <div class="flex justify-center mt-10">
     <div class="flex items-center">
       <RouterLink
         :to="{ name: 'home', query: { page: page - 1 } }"
         rel="prev"
         v-if="page != 1"
         id="page-prev"
-        class="join-item items-center btn bg-slate-300 hover:bg-gray-500"
+        class="join-item text-center rounded-bl-md rounded-tl-md px-6 py-2 bg-gradient-to-r from-orange-500 to-red-500 hover:bg-gray-500 text-white "
       >
-        «
+        « PREV
       </RouterLink>
 
-      <div class="join-item btn bg-gray-300 text-center hover:bg-gray-500">
-        Page {{ page }} of {{ totalPages }}
-      </div>
-      <div class="mr-10">
+      <div class="flex items-center mr-10">
         <RouterLink
           :to="{ name: 'home', query: { page: page + 1 } }"
           rel="next"
           v-if="hasNextPage"
           id="page-next"
-          class="join-item text-center btn bg-slate-300 hover:bg-gray-500"
+          class=" join-item text-center rounded-br-md rounded-tr-md px-6 py-2 bg-gradient-to-r from-red-500 to-orange-500 hover:bg-gray-500 text-white "
         >
-          »
+          NEXT »
         </RouterLink>
       </div>
+    </div>
     </div>
   </div>
 </template>

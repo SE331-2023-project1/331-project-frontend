@@ -16,12 +16,12 @@
             </svg>
           </label>
         </div>
-        <div class="drawer-side min-h-screen drop-shadow-3xl rounded-br-6xl">
+        <div class="drawer-side min-h-screen drop-shadow-3xl shadow-gray-300 rounded-br-6xl">
           <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
           <ul v-if="authStore.currentUserName" class="menu p-4 w-30 min-h-full bg-red-500 text-white rounded-br-6xl">
             
             <!-- Sidebar content here -->
-            <li class="flex flex-col items-center mt-20">
+            <li class="flex flex-col items-center">
               <a
                 class="inline-flex flex-col items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
@@ -85,7 +85,7 @@
                     </g>
                   </g>
                 </svg>
-                <span class="mt-auto text-white">Teacher</span>
+                <span class="mt-auto text-white">Advisor</span>
             </RouterLink>                        
             </li>
 
