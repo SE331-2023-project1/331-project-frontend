@@ -20,12 +20,8 @@ export default{
     edit(id:number,advisor: AdvisorInfo): Promise<AxiosResponse<AdvisorInfo>> {
         return apiClient.post<AdvisorInfo>('/advisors/edit/' +id.toString(), advisor);
     },
+    getAdvisorsByKeyword(keyword: string, perPage: number, page: number): Promise<AxiosResponse<AdvisorInfo[]>> {
+        return apiClient.get<AdvisorInfo[]>('/advisors?_query=' + keyword + '&_limit=' + perPage + '&_page=' + page)
+    }
 
-//     ,
-//     saveAdvisor(event: AdvisorInfo): Promise<AxiosResponse<AdvisorInfo>>{
-//         return apiClient.post<AdvisorInfo>('/events',event)
-//     },
-//     getAdvisorsByKeyword(keyword: string, perPage: number, page: number): Promise<AxiosResponse<AdvisorInfo[]>> {
-//     return apiClient.get<AdvisorInfo[]>('/events?title=' + keyword + '&_limit=' + perPage + '&_page=' + page)
-// }
 }

@@ -80,7 +80,7 @@
   <div class="">
     <StudentCard v-for="student in students" :key="student.id" :student="student"></StudentCard>
   </div>
-  <div class="flex justify-center mt-10">
+  <div class="flex justify-center mt-5">
     <div class="flex items-center">
       <RouterLink
         :to="{ name: 'home', query: { page: page - 1 } }"
@@ -158,6 +158,7 @@ AdvisorService.getAdvisors()
   .catch(() => {
     router.push({ name: 'NetworkError' })
   })
+  
 console.log(advisors.value)
 onBeforeRouteUpdate((to, from, next) => {
   const toPage = Number(to.query.page)

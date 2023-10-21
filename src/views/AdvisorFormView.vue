@@ -1,9 +1,9 @@
 <template>
     <!-- component -->
     <div class="min-h-screen h-10 bg-white flex">
-      <div class="w-full max-w-6xl">
-          <div class="bg-white rounded shadow-xl">
-              <div class="px-8 py-4 text-gray-700 text-3xl font-bold border-b-2 border-red-400">Add Advisor</div>
+      <div class="w-full mt-7 max-w-6xl">
+          <div class="bg-white rounded-xl shadow-xl border">
+              <div class="px-8 py-4 text-gray-700 text-3xl font-bold shadow-xl shadow-gray-200  border-red-400">Add Advisor</div>
               <form @submit.prevent="saveAdvisor" name="advisor_application" id="advisor_application" action="" class="py-4 px-8">
                   <div class="mb-4">
                       <label class="block text-gray-600 text-sm font-bold mb-2" for="advisor_name">Advisor Name:</label>
