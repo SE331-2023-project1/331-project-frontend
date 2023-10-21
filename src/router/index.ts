@@ -56,7 +56,7 @@ const router = createRouter({
       props: true,
     },
     {
-      path: "/add-comment",
+      path: "/add-comment/:id",
       name: "add-comment",
       component: AddCommentView,
       props: true,

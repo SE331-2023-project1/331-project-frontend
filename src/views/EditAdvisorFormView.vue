@@ -62,6 +62,7 @@ const advisor = ref<AdvisorInfo>({
     images: [],
     academicPosition: '',
     advisees: [{ id: 1,name: '',studentID:'',surname: '',images: []}],
+    file: []
   })
 
   const advisor_keep = ref<AdvisorInfo | null>(null)
