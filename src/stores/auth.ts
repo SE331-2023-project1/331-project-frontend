@@ -15,7 +15,7 @@ const apiClient: AxiosInstance = axios.create({
 export const useAuthStore = defineStore('auth', {
     state: () => ({
         token: null as string | null,
-        user: null as StudentLogin | null,
+        user: null as StudentLogin | null
         
     }),
     getters: {
@@ -66,6 +66,18 @@ export const useAuthStore = defineStore('auth', {
             email: email,
             password: password
         })
+    },
+        advisorRegister(username: string, firstname: string, lastname: string, email: string, password: string,Image: []) {
+            return apiClient
+            .post('/api/v1/auth/advisorRegister', {
+            username: username,
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            password: password,
+            Image: []
+        })
     }
 }
 })
+

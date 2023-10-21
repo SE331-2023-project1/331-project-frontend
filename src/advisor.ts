@@ -24,3 +24,10 @@ export interface advisorRegister{
     password : string
     roles: string[] 
 }
+
+export interface advisorLogin{
+    username: string
+    images: string[]
+    roles: string[] 
+}
+
