@@ -39,7 +39,7 @@
           @input="updateKeyword"
           type="search"
           id="default-search"
-          class="block w-96 p-2 pl-12 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          class="block w-96 p-2 pl-12 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
           placeholder="Search..."
         />
       </div>
@@ -88,7 +88,7 @@
               rel="prev"
               v-if="page != 1"
               id="page-prev"
-              class="join-item text-center rounded-bl-md rounded-tl-md px-6 py-2 bg-gradient-to-r from-orange-500 to-red-500 hover:bg-gray-500 text-white "
+              class="join-item text-center rounded-bl-md rounded-tl-md px-6 py-2 bg-gradient-to-r from-orange-500 to-red-500 hover:bg-gray-500 text-white animate-fade-right"
           >
               « PREV
           </RouterLink>
@@ -99,7 +99,7 @@
               rel="next"
               v-if="hasNextPage"
               id="page-next"
-              class=" join-item text-center rounded-br-md rounded-tr-md px-6 py-2 bg-gradient-to-r from-red-500 to-orange-500 hover:bg-gray-500 text-white "
+              class=" join-item text-center rounded-br-md rounded-tr-md px-6 py-2 bg-gradient-to-r from-red-500 to-orange-500 hover:bg-gray-500 text-white animate-fade-left"
           >
             NEXT  »
           </RouterLink>

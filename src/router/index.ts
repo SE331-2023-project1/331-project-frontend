@@ -9,9 +9,10 @@ import SignInView from '@/views/SignInView.vue'
 import StudentFormView from '@/views/StudentFormView.vue'
 import AdvisorFormView from '@/views/AdvisorFormView.vue'
 import EditAdvisorForm from '@/views/EditAdvisorFormView.vue'
-import AnnouncementView from '@/views/AnnouncementView.vue'
 import AddPostView from '@/views/AddPostView.vue'
 import AddCommentView from '@/views/AddCommentView.vue'
+
+import AnnouncementView from '@/views/AnnouncementView.vue'
 
 
 const router = createRouter({

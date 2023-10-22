@@ -4,11 +4,16 @@
     <h1 class="font-bold text-3xl">Add Post</h1>
   </div>
   <div class="flex items-center justify-center">
-    <div class="max-w-7xl mr-20 w-full  bg-gray-800 p-8 shadow-2xl rounded-br-3xl rounded-tl-3xl ">
+    <div class="max-w-7xl mr-20 w-full  bg-white-100 p-8 shadow-2xl border rounded-br-3xl rounded-tl-3xl ">
       <form>
         <!-- Post Content Section -->
+        <div
+        @dragover.prevent
+        @drop.prevent="handleDrop"
+        class="your-drop-area-styles"
+        >
         <div class="mb-6">
-          <label for="postContent" class="block text-white text-md font-bold mb-2">New Post</label>
+          <label for="postContent" class="block text-black text-md font-bold mb-2">New Post</label>
           <textarea
             id="postContent"
             name="postContent"
@@ -37,7 +42,7 @@
           </div>
         </div>
 
-        <!-- Submit Button and Character Limit Section -->
+        <RouterLink  :to="{ name: 'announcement' }">
         <div class="flex items-center justify-end mt-5 animate-fade-right ">
           <button
             @click="confirmFile"
@@ -61,6 +66,8 @@
             </svg>
           </button>
         </div>
+      </RouterLink>
+    </div>
       </form>
     </div>
   </div>
@@ -68,10 +75,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { type AdvisorInfo } from '@/advisor'
+import { type AdvisorInfo } from '@/advisor';
 import UploadFile from '@/services/UploadFile'
+import { useRouter } from 'vue-router'
 // import UploadFile from '@/components/UploadFile.vue'
 const selectedFile = ref<File | null>(null);
+const router = useRouter()
 const files = ref<FileList | null>(null);
 const advisor = ref<AdvisorInfo>({
   id: 0,
@@ -112,6 +121,9 @@ const confirmFile = () => {
     formData.append('file', files.value[0]);
     UploadFile.uploadFile(formData);
   }
+  router.push({ name: 'announcement' })
+  
 };
+
 </script>
 

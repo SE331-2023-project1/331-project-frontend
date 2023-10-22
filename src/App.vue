@@ -51,7 +51,8 @@
 
             <!-- Sidebar content here -->
             <li class="flex flex-col items-center mt-2">
-              <a
+              <RouterLink
+                :to="{ name: 'announcement' }"
               class="inline-flex flex-col items-center p-2 text-gray-900 rounded-lg group"
               >
                 <svg
@@ -67,7 +68,7 @@
                 </svg>
 
                 <span class="mt-auto text-white">Announce</span>
-              </a>
+            </RouterLink>
             </li>
             <li class="flex flex-col items-center mt-7">
               <RouterLink

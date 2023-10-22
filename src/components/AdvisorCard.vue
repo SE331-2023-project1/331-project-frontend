@@ -4,7 +4,7 @@
         <figure class="p-5 ml-5">
           <img v-for="image in advisor?.images" :key="image" :src="image" class="w-20 h-20 rounded-md" alt="advisor image"/>
         </figure>
-        <div class="card-body px-6">
+        <div class="card-body px-6 animate-fade-down">
           <h2 class="card-title text-gray-800 font-bold text-xl"> {{ advisor?.name }} {{ advisor?.surname }}</h2>
           <h3 class="text-gray-400"> {{ advisor?.department }}</h3>
           <h3 class="text-gray-400"> {{ advisor?.academicPosition }}</h3>

@@ -24,6 +24,14 @@
                       <input v-model="advisor.academicPosition" :placeholder="advisor_keep?.academicPosition" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="course_name" id="academicPosition">
                       <p id="error_creater_id"></p>
                   </div>
+
+                  <!-- <div class="mb-4">
+                  <label class="block text-gray-600 text-sm font-bold mb-2" for="course_name">Student:</label>
+                <select v-model="advisor.advisees" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="select" name="advisees" id="advisees" >
+                      <option v-for="advisor in advisees" :key="advisees.id" :value="advisees">{{ advisees.name }}</option>
+                    </select>
+                  </div> -->
+
                   <div class="mb-4">
                       <label class="block text-gray-700 text-sm font-bold mb-2" for="course_name">Add Image:</label>
                       <ImageUpload v-model="advisor.images" />
@@ -41,7 +49,7 @@
 
 </template>
 <script setup lang="ts">
-import type { AdvisorInfo } from '@/advisor';
+import type { AdviseesStudent, AdvisorInfo } from '@/advisor';
 import { ref } from 'vue';
 import AdvisorService from '@/services/AdvisorService';
 import { useMessageStore } from '@/stores/message'
@@ -66,6 +74,7 @@ const advisor = ref<AdvisorInfo>({
   })
 
   const advisor_keep = ref<AdvisorInfo | null>(null)
+  const advisees = ref<AdviseesStudent[]>([]);
 
   AdvisorService.getAdvisorByID(Number(props.id)).then((response) => {
     advisor_keep.value = response.data

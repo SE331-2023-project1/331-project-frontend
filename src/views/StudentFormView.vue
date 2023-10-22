@@ -22,9 +22,13 @@
                     <input v-model="student.department" :placeholder="student_keep?.department" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="course_name" id="department">
                     <p id="error_creater_id"></p>
                 </div>
+
+                <div class="mb-4">
+                  <label class="block text-gray-600 text-sm font-bold mb-2" for="course_name">Advisor:</label>
                 <select v-model="student.advisor" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="select" name="advisor" id="advisor" >
                       <option v-for="advisor in advisors" :key="advisor.id" :value="advisor">{{ advisor.name }}</option>
                     </select>
+                  </div>
                 <!-- <select v-model="student.advisor" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="select" name="advisor" id="advisor" >
                       <option v-for="advisor in advisors" :key="advisor.id" :value="advisor">{{ advisor.name }}</option>
                     </select> -->
