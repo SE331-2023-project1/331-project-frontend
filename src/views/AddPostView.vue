@@ -75,13 +75,28 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import AnnouncementCard from '@/components/AnnouncementCard.vue';
 import { type AdvisorInfo } from '@/advisor';
 import UploadFile from '@/services/UploadFile'
 import { useRouter } from 'vue-router'
-// import UploadFile from '@/components/UploadFile.vue'
+import AnnouncementService from '@/services/AnnouncementService';
 const selectedFile = ref<File | null>(null);
 const router = useRouter()
+import { defineProps } from 'vue'
+import type { AnnouncementInfo } from '@/announcement'
+import type { AxiosResponse } from 'axios';
 const files = ref<FileList | null>(null);
+  const props = defineProps({
+    page: {
+      type: Number,
+      required: true
+    },
+    id: {
+    type: Number,
+    required: true
+  }
+})
+
 const advisor = ref<AdvisorInfo>({
   id: 0,
   name: '',
@@ -92,6 +107,21 @@ const advisor = ref<AdvisorInfo>({
   academicPosition: '',
   advisees: [{ id: 1, name: '', studentID: '', surname: '', images: [] }]
 })
+
+const announcement = ref<AnnouncementInfo>({
+  id: 0,
+  advisor: 0,
+  files: '',
+  content: ''
+})
+
+AnnouncementService.getAnnouncement(3, props.page)
+  .then((response : AxiosResponse<AnnouncementInfo[]>) => {
+    announcement.value = response.data
+    console.log('hello')
+    console.log(announcement.value)
+  })
+
 
 const handleDrop = (event : DragEvent) => {
   event.preventDefault();

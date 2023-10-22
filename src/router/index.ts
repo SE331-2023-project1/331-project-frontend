@@ -11,10 +11,8 @@ import AdvisorFormView from '@/views/AdvisorFormView.vue'
 import EditAdvisorForm from '@/views/EditAdvisorFormView.vue'
 import AddPostView from '@/views/AddPostView.vue'
 import AddCommentView from '@/views/AddCommentView.vue'
-
 import AnnouncementView from '@/views/AnnouncementView.vue'
-
-
+import { useAuthStore } from '@/stores/auth'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -26,10 +24,17 @@ const router = createRouter({
         page: parseInt((route.query?.page as string) || "1"),
       }),
       beforeEnter(){
+        const authStore = useAuthStore()
         const user = localStorage.getItem('user')
         if(user == null){
           router.push({
             name: 'Signin'
+          })
+        }
+        if(authStore.isStudent){
+          router.push({
+            name: 'student-detail',
+            params: {id:authStore.getId}
           })
         }
       }

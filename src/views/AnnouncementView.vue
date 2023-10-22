@@ -1,16 +1,9 @@
 
 <template>
-
   <div>
-      <div class="flex items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 mt-6 mr-2 text-red-500">
-</svg>
-</div>
 			<h1 class="mt-10 mb-5 font-bold text-3xl">Announcement</h1>
-      <div class="">
-    <AdvisorCard></AdvisorCard>
+    
   </div>
-		</div>
 
 
 
