@@ -82,7 +82,7 @@
   <div class="">
     <StudentCard v-for="student in students" :key="student.id" :student="student"></StudentCard>
   </div>
-  <div class="flex justify-center mt-5">
+  <div class="flex justify-center">
     <div class="flex items-center">
 
   <div class="flex justify-center mt-10">
