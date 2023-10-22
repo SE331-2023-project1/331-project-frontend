@@ -52,7 +52,8 @@
 
             <!-- Sidebar content here -->
             <li class="flex flex-col items-center mt-2">
-              <a
+              <RouterLink
+                :to="{ name: 'announcement' }"
               class="inline-flex flex-col items-center p-2 text-gray-900 rounded-lg group"
               >
                 <svg
@@ -68,9 +69,9 @@
                 </svg>
 
                 <span class="mt-auto text-white">Announce</span>
-              </a>
+            </RouterLink>
             </li>
-            <li class="flex flex-col items-center mt-7">
+            <li v-if="authStore.isAdmin || authStore.isAdvisor" class="flex flex-col items-center mt-7">
               <RouterLink
                 :to="{ name: 'home' }"
                 class="inline-flex flex-col items-center p-2 text-gray-900 rounded-lg group"
@@ -109,7 +110,7 @@
                 <span class="mt-auto text-white">Student</span>
               </RouterLink>
             </li>
-            <li class="flex flex-col items-center mt-8">
+            <li v-if="authStore.isAdmin || authStore.isAdvisor" class="flex flex-col items-center mt-8">
               <RouterLink
                 :to="{ name: 'advisor' }"
                 class="inline-flex flex-col items-center p-2 text-gray-900 rounded-lg group"

@@ -4,11 +4,16 @@
     <h1 class="font-bold text-3xl">Add Post</h1>
   </div>
   <div class="flex items-center justify-center">
-    <div class="max-w-7xl mr-20 w-full  bg-gray-800 p-8 shadow-2xl rounded-br-3xl rounded-tl-3xl ">
+    <div class="max-w-7xl mr-20 w-full  bg-white-100 p-8 shadow-2xl border rounded-br-3xl rounded-tl-3xl ">
       <form>
         <!-- Post Content Section -->
+        <div
+        @dragover.prevent
+        @drop.prevent="handleDrop"
+        class="your-drop-area-styles"
+        >
         <div class="mb-6">
-          <label for="postContent" class="block text-white text-md font-bold mb-2">New Post</label>
+          <label for="postContent" class="block text-black text-md font-bold mb-2">New Post</label>
           <textarea
             id="postContent"
             name="postContent"
@@ -37,7 +42,7 @@
           </div>
         </div>
 
-        <!-- Submit Button and Character Limit Section -->
+        <RouterLink  :to="{ name: 'announcement' }">
         <div class="flex items-center justify-end mt-5 animate-fade-right ">
           <button
             @click="confirmFile"
@@ -61,6 +66,8 @@
             </svg>
           </button>
         </div>
+      </RouterLink>
+    </div>
       </form>
     </div>
   </div>
@@ -68,11 +75,28 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { type AdvisorInfo } from '@/advisor'
+import AnnouncementCard from '@/components/AnnouncementCard.vue';
+import { type AdvisorInfo } from '@/advisor';
 import UploadFile from '@/services/UploadFile'
-// import UploadFile from '@/components/UploadFile.vue'
+import { useRouter } from 'vue-router'
+import AnnouncementService from '@/services/AnnouncementService';
 const selectedFile = ref<File | null>(null);
+const router = useRouter()
+import { defineProps } from 'vue'
+import type { AnnouncementInfo } from '@/announcement'
+import type { AxiosResponse } from 'axios';
 const files = ref<FileList | null>(null);
+  const props = defineProps({
+    page: {
+      type: Number,
+      required: true
+    },
+    id: {
+    type: Number,
+    required: true
+  }
+})
+
 const advisor = ref<AdvisorInfo>({
   id: 0,
   name: '',
@@ -83,6 +107,21 @@ const advisor = ref<AdvisorInfo>({
   academicPosition: '',
   advisees: [{ id: 1, name: '', studentID: '', surname: '', images: [] }]
 })
+
+const announcement = ref<AnnouncementInfo>({
+  id: 0,
+  advisor: 0,
+  files: '',
+  content: ''
+})
+
+AnnouncementService.getAnnouncement(3, props.page)
+  .then((response : AxiosResponse<AnnouncementInfo[]>) => {
+    announcement.value = response.data
+    console.log('hello')
+    console.log(announcement.value)
+  })
+
 
 const handleDrop = (event : DragEvent) => {
   event.preventDefault();
@@ -112,6 +151,9 @@ const confirmFile = () => {
     formData.append('file', files.value[0]);
     UploadFile.uploadFile(formData);
   }
+  router.push({ name: 'announcement' })
+  
 };
+
 </script>
 
