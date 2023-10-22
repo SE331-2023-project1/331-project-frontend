@@ -33,6 +33,9 @@ export const useAuthStore = defineStore('auth', {
         },
         userImage(): string{
             return this.user?.images[0] || ''
+        },
+        getId():number{
+            return this.user?.id || 0
         }
     },
     actions: {

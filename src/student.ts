@@ -23,6 +23,7 @@ export interface StudentCourse{
     description:string
 }
 export interface StudentLogin{
+    id:number
     name: string
     images: string[]
     roles: string[] 

@@ -3,12 +3,12 @@
       <footer class="flex justify-between items-center mb-2">
         <div class="flex items-center">
     <p class="inline-flex items-center text-sm text-gray-900 dark:text-white font-semibold">
-      <img v-for="image in comment.advisor?.images" :key="image" :src="image" class="mr-2 w-6 h-6 rounded-full" alt="img_advisor">
+      <img v-for="image in answer.content" :key="image" :src="image" class="mr-2 w-6 h-6 rounded-full" alt="img_advisor">
     </p>
-    <p class="text-sm text-white dark:text-white mr-1">{{ comment.advisor?.name }} {{ comment.advisor?.surname }}</p>
-    <p class="text-sm text-gray-300 dark:text-white"> to {{ comment.student.name }}</p>
+    <p class="text-sm text-white dark:text-white mr-1">aaa</p>
+    <p class="text-sm text-gray-300 dark:text-white"> to aaa</p>
     <div class="ml-80">
-    <p class="text-sm text-gray-300 dark:text-white ml-80">{{ formattedPostedAt }}</p>
+    <p class="text-sm text-gray-300 dark:text-white ml-80">aa</p>
     
 </div>
 <button @click="toggleChatBox"
@@ -18,15 +18,8 @@
         </button>
   </div>
       </footer>
-      <p class="text-white  dark:text-gray-400"> {{ comment.commentContent }} </p>
+      <p class="text-white  dark:text-gray-400"> {{ answer.content }} </p>
       <div class="flex items-center mt-4 space-x-4">
-        <button @click="toggleChatBox"
-                class="flex items-center text-sm text-white  hover:underline dark:text-gray-400 font-medium">
-          <svg class="mr-1.5 w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"/>
-          </svg>
-          Reply
-        </button>
       </div>
       <div v-if="showChatBox" class="flex items-center mt-4">
   <div class="w-full rounded-lg relative">
@@ -39,21 +32,17 @@
     </button>
   </div>
 </div>
-
-
-
-
     </article>
   </template>
   
   <script setup lang="ts">
-  import type { CommentInfoDTO } from '@/comment'
+  import type { AnswerInfo } from '@/answer'
   import type { PropType } from 'vue'
   import { ref,computed } from 'vue'
 
   const props = defineProps({
-    comment: {
-      type: Object as PropType<CommentInfoDTO>,
+    answer: {
+      type: Object as PropType<AnswerInfo>,
       required: true
     }
   })
@@ -67,16 +56,16 @@
     console.log('Message sent:', chatMessage.value)
     chatMessage.value = ''
   }
-  const formattedPostedAt = computed(() => {
-  const date = new Date(props.comment.postedAt)
-  const day = date.getDate().toString().padStart(2, '0')
-  const month = (date.getMonth() + 1).toString().padStart(2, '0')
-  const year = date.getFullYear().toString().slice(-2)
-  const hours = date.getHours().toString().padStart(2, '0')
-  const minutes = date.getMinutes().toString().padStart(2, '0')
-  const seconds = date.getSeconds().toString().padStart(2, '0')
-  return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`
-})
+//   const formattedPostedAt = computed(() => {
+//   const date = new Date(props.comment.postedAt)
+//   const day = date.getDate().toString().padStart(2, '0')
+//   const month = (date.getMonth() + 1).toString().padStart(2, '0')
+//   const year = date.getFullYear().toString().slice(-2)
+//   const hours = date.getHours().toString().padStart(2, '0')
+//   const minutes = date.getMinutes().toString().padStart(2, '0')
+//   const seconds = date.getSeconds().toString().padStart(2, '0')
+//   return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`
+// })
 
   </script>
   

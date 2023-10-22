@@ -10,10 +10,10 @@
     <div class="ml-auto">
   </div>
     <RouterLink :to="{ name: 'add-post' } "
-    class="btn bg-gradient-to-r text-white from-red-500 to-orange-500 flex items-center mt-5 mr-10 px-6 py-3">Add Post
+    class="btn bg-gradient-to-r text-white from-red-500 to-orange-500 flex items-center mt-5 mr-10 px-6 py-2">+ Add Post
     
   </RouterLink>
-  <div class="flex items-center mr-12 mt-6">
+  <div class="flex items-center mr-9 mt-6">
     <p class="text-gray-700 text-sm mr-4 font-semibold">{{ authStore.currentUserName }}</p>
     <div class="relative mr-1">
       <img class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 mt-2" :src="authStore.userImage" alt="" />
@@ -43,10 +43,8 @@
 
 
     <div class="card-actions justify-end">
-      <RouterLink  :to="{ name: 'add-comment' }" class="flex justify-start ml-32">
-          <button class="transition ease-in-out delay-70 hover:-translate-y-1 hover:scale-110 duration-300 rounded-md px-2 mr-5 ml-2 min-w-full h-9 bg-gradient-to-r from-red-500 to-orange-500 hover:bg-gradient-to-r hover:from-red-400 hover:to-red-500 text-white">
-          Comment</button>
-        </RouterLink>
+      <div  class="flex justify-start ml-32">
+        </div>
     <RouterLink
           :to="{ name: 'edit-advisor', params: { id: advisor?.id } }"
           class="btn-sm btn-circle px-1 py-1  bg-red-600 bg-opacity-70 hover:bg-red-300 top-5 ml-30 right-9 absolute border-2 border-white dark:border-gray-800 rounded-full"
@@ -63,7 +61,7 @@
   </div>
 </div>
 
-<div class="card w-full  shadow-2xl mt-5 ml-5 mr-10">
+<div class="card w-full  shadow-2xl mt-5 ml-5 mr-20">
   <div class="card-body items-left text-left">
     <h2 class="card-title"> Student </h2>
     
