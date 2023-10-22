@@ -85,7 +85,7 @@
   <div class="flex justify-center">
     <div class="flex items-center">
 
-  <div class="flex justify-center mt-10">
+  <div class="flex justify-center mt-5">
       <RouterLink
         :to="{ name: 'home', query: { page: page - 1 } }"
         rel="prev"

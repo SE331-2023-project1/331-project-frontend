@@ -12,6 +12,7 @@ import EditAdvisorForm from '@/views/EditAdvisorFormView.vue'
 import AnnouncementView from '@/views/AnnouncementView.vue'
 import AddPostView from '@/views/AddPostView.vue'
 import AddCommentView from '@/views/AddCommentView.vue'
+import AddCommentAdvisor from '@/views/AddCommentAdvisor.vue'
 
 
 const router = createRouter({
@@ -57,6 +58,12 @@ const router = createRouter({
     },
     {
       path: "/add-comment/:id",
+      name: "add-comment-advisor",
+      component: AddCommentAdvisor,
+      props: true,
+    },
+    {
+      path: "/add-comment/:id",
       name: "add-comment",
       component: AddCommentView,
       props: true,
@@ -74,7 +81,12 @@ const router = createRouter({
       component: SignUpView,
       props: true,
     },
-
+    // {
+    //   path: "/SignupAdvisor",
+    //   name: "SignupAdvisor",
+    //   component: SignUpAdvisor,
+    //   props: true,
+    // },
     {
       path: "/Signin",
       name: "Signin",
