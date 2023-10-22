@@ -4,7 +4,7 @@
     <div class="w-full mt-7 max-w-6xl">
         <div class="bg-white rounded-xl shadow-xl border ">
             <div class="px-8 py-4 text-gray-700 text-3xl font-bold shadow-xl shadow-gray-200  border-red-400">Edit Information</div>
-            <form @submit.prevent="editStudentInformation" name="student_application" id="student_application" action="" class="py-4 px-8">
+            <form @submit.prevent="submitForm" name="student_application" id="student_application" action="" class="py-4 px-8">
                 <div class="mb-4">
                     <label class="block text-gray-600 text-sm font-bold mb-2" for="student_id">Student ID:</label>
                     <input v-model="student.studentID" :placeholder="student_keep?.studentID" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="student_id" id="student_id" >
@@ -22,7 +22,9 @@
                     <input v-model="student.department" :placeholder="student_keep?.department" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="text" name="course_name" id="department">
                     <p id="error_creater_id"></p>
                 </div>
-
+                <select v-model="student.advisor" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="select" name="advisor" id="advisor" >
+                      <option v-for="advisor in advisors" :key="advisor.id" :value="advisor">{{ advisor.name }}</option>
+                    </select>
                 <!-- <select v-model="student.advisor" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="select" name="advisor" id="advisor" >
                       <option v-for="advisor in advisors" :key="advisor.id" :value="advisor">{{ advisor.name }}</option>
                     </select> -->
@@ -43,20 +45,20 @@
 
 </template>
 <script setup lang="ts">
-import type { StudentInfo } from '@/student';
+import type { StudentInfo, StudentAdvisor } from '@/student';
 import { ref } from 'vue';
-import StudentService from '@/services/StudentService';
-import { useMessageStore } from '@/stores/message'
-import { useRouter } from 'vue-router';
-import { type StudentAdvisor } from '@/student';
-import AdvisorService from '@/services/AdvisorService';
-import ImageUpload from '@/components/ImageUpload.vue';
+import StudentService from '@/services/StudentService'; // Import StudentService correctly
+import AdvisorService from '@/services/AdvisorService'; // Import AdvisorService correctly
+import { useMessageStore } from '@/stores/message'; // Check the location of useMessageStore
+import { useRouter } from 'vue-router'; // Check the location of useRouter
+import ImageUpload from '@/components/ImageUpload.vue'; // Check the location of ImageUpload component
 
-const store = useMessageStore()
-const router = useRouter()
+const store = useMessageStore();
+const router = useRouter();
 const props = defineProps({
-        id: String
-    })
+  id: String
+});
+
 const student = ref<StudentInfo>({
   id: 0,
   studentID: '',
@@ -64,26 +66,35 @@ const student = ref<StudentInfo>({
   surname: '',
   department: '',
   images: [],
-  advisor: { id: 1, academicPosition: '', name: '', surname: '', images: [], department: '' },
-  courses: [{ id: 1, name: '', courseID: '', description: '' }],
-})
-const student_keep = ref<StudentInfo | null>(null)
-const advisors = ref<StudentAdvisor[]>([])
+  advisor: { id: 0, academicPosition: '', name: '', surname: '', images: [], department: '' },
+  courses: [{ id: 1, name: '', courseID: '', description: '' }]
+});
+
+const student_keep = ref<StudentInfo | null>(null);
+const advisors = ref<StudentAdvisor[]>([]);
+
+// Fetch advisors
 AdvisorService.getAdvisors()
   .then((response) => {
-    advisors.value = response.data
+    advisors.value = response.data;
   })
   .catch(() => {
-    router.push({ name: 'network-error' })
-  })
-  StudentService.getStudentByID(Number(props.id)).then((response) => {
-    student_keep.value = response.data
-    }).catch(error => {
-        console.log(error)
-    })
+    router.push({ name: 'network-error' });
+  });
 
-  function editStudentInformation() {
-  StudentService.editStudentInformation(Number(props.id),student.value)
+// Fetch student by ID
+StudentService.getStudentByID(Number(props.id))
+  .then((response) => {
+    student_keep.value = response.data;
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+// Function to edit student information
+function editStudentInformation() {
+  console.log(student.value);
+  StudentService.editStudentInformation(Number(props.id), student.value)
     .then((response) => {
       console.log(response.data);
       router.push({
@@ -100,6 +111,28 @@ AdvisorService.getAdvisors()
     });
 }
 
-
+// Function to edit student advisor
+function editStudentAdvisor() {
+  console.log(student.value);
+  StudentService.editStudentAdvisor(Number(props.id), student.value)
+    .then((response) => {
+      console.log(response.data);
+      router.push({
+        name: 'student-detail',
+        params: { id: response.data.id }
+      });
+      store.updateMessage('You have successfully edited the student details for ' + response.data.name);
+      setTimeout(() => {
+        store.resetMessage();
+      }, 3000);
+    })
+    .catch(() => {
+      router.push({ name: 'network-error' });
+    });
+}
+function submitForm() {
+  editStudentInformation();
+  editStudentAdvisor();
+}
 
 </script>

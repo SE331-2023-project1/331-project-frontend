@@ -9,4 +9,5 @@ export default {
     saveComment(id:number,comment: CommentInfo): Promise<AxiosResponse<CommentInfo>> {
       return apiClient.post<CommentInfo>('/addComment/' +id.toString(), comment);
     },
+     
 }

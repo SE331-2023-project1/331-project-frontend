@@ -16,7 +16,9 @@ export default{
     editStudentInformation(id:number,student: StudentInfo): Promise<AxiosResponse<StudentInfo>> {
         return apiClient.post<StudentInfo>('/students/editInformation/' +id.toString(), student);
     },
-
+    editStudentAdvisor(id:number,student: StudentInfo): Promise<AxiosResponse<StudentInfo>> {
+        return apiClient.post<StudentInfo>('/students/editAdvisor/' +id.toString(), student);
+    },
     getStudentsByKeyword(keyword: string, perPage: number, page: number): Promise<AxiosResponse<StudentInfo[]>> {
     return apiClient.get<StudentInfo[]>('/students?_query=' + keyword + '&_limit=' + perPage + '&_page=' + page)
 }
