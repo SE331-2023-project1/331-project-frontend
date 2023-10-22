@@ -1,12 +1,12 @@
 <template>
-  <section class="bg-white dark:bg-gray-900 py-8 lg:py-10 antialiased mr-12">
-    <div class="max-w-full mr-12 mx-auto px-10 rounded-br-2xl rounded-tl-2xl p-10 bg-gray-700">
-      <div class="flex justify-between items-center mb-6">
+  <section class="bg-white dark:bg-gray-900 py-5 lg:py-5 antialiased mr-12">
+    <div class="max-w-full mr-12 mx-auto rounded-br-2xl shadow-2xl rounded-tl-2xl p-10 bg-gray-700">
+      <div class="flex justify-between items-center">
         <h2 class="text-lg lg:text-2xl font-bold text-white dark:text-white">Comment</h2>
       </div>
       <form @submit.prevent="saveComment" class="mb-10">
         <div
-          class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border-2 h-32 border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+          class="py-2 px-4 mb-4 mt-3 bg-white rounded-lg rounded-t-lg border-2 h-32 border-gray-200 dark:bg-gray-800 dark:border-gray-700"
         >
           <label for="comment" class="sr-only">Your comment</label>
           <input
@@ -25,20 +25,10 @@
       </form>
     </div>
   </section>
-  <div>
-    <CommentCard
-      v-for="comment in respone_comment"
-      :key="comment.id"
-      :comment="comment"
-    ></CommentCard>
-  </div>
-<div>
-    <AnswerCard
-      v-if="answer"
-      :key="answer.id"
-      :answer="answer"
-    ></AnswerCard>
-</div>
+
+    <CommentCard v-for="comment in respone_comment" :key="comment.id" :comment="comment">
+    </CommentCard>
+
 </template>
 
 <script setup lang="ts">
@@ -53,9 +43,8 @@ import { defineProps } from 'vue'
 import type { CommentInfo } from '@/comment'
 import type { CommentInfoDTO } from '@/comment'
 import { useAuthStore } from '@/stores/auth'
-import AnswerCard from '@/components/AnswerCard.vue'
-import { onBeforeRouteUpdate } from 'vue-router'
-import type { AnswerInfo } from '@/answer'
+
+
 const authUser = useAuthStore()
 const store = useMessageStore()
 const router = useRouter()
@@ -70,20 +59,18 @@ const comment = ref<CommentInfo>({
   advisorId: authUser.getId
 })
 
-const answer = ref<AnswerInfo>({
-  id: 0,
-  content: '',
-  comment: {     id:0,
-    answer: [],
-    commentContent: 0,
-    postedAt:'' }
-})
 const respone_comment = ref<CommentInfoDTO[]>([])
 const showCommentCard = ref(false) // Initialize showCommentCard with ref
 CommentService.getComment(Number(prop.id)).then((response) => {
   respone_comment.value = response.data
   console.log(respone_comment.value)
 })
+
+// const respone_answer = ref<AnswerInfo[]>([])
+// AnswerService.getAnswer(Number(prop.id)).then((response) => {
+//     respone_answer.value = response.data
+//   console.log(respone_answer.value)
+// })
 
 const saveComment = () => {
   console.log('HeHEEEEE ' + authUser.getId)
@@ -93,12 +80,11 @@ const saveComment = () => {
       // Add this line to show the CommentCard when the comment is successfully saved
       showCommentCard.value = true
       console.log(response.data)
-      comment.value.commentContent = '';
+      comment.value.commentContent = ''
       CommentService.getComment(Number(prop.id)).then((response) => {
         respone_comment.value = response.data
         console.log(respone_comment.value)
       })
-
     })
     .catch(() => {
       router.push({ name: 'network-error' })

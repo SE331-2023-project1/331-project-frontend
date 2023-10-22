@@ -45,19 +45,19 @@
         </RouterLink>
       </figure>
       <div class="card-body mt-2">
-        <h3 class="text-gray-700">
+        <h3 class="text-gray-700 mb-2">
           <span class="font-bold">Student ID: </span>
           <span class="text-gray-400">{{ student?.studentID }}</span>
         </h3>
-        <h3 class="text-gray-700">
+        <h3 class="text-gray-700 mb-2">
           <span class="font-bold">Name: </span>
           <span class="text-gray-400">{{ student?.name }}</span>
         </h3>
-        <h3 class="text-gray-700">
+        <h3 class="text-gray-700 mb-2">
           <span class="font-bold">Surmame: </span
           ><span class="text-gray-400">{{ student?.surname }}</span>
         </h3>
-        <h3 class="text-gray-700">
+        <h3 class="text-gray-700 mb-2">
           <span class="font-bold">Department: </span
           ><span class="text-gray-400">{{ student?.department }}</span>
         </h3>

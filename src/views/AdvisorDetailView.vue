@@ -28,26 +28,24 @@
 
 
 <div class="flex">
-<div class="flex card w-96 bg-base-100 shadow-2xl mt-5">
+  <div class="flex card w-96 bg-base-100 shadow-xl mt-5 border">
   <figure class="px-12 pt-9">
     <img 
     v-for="image in advisor?.images" 
     :key="image" 
-    :src="image" alt="Shoes" class="rounded-md w-13 h-13" />
+    :src="image" class="rounded-md w-13 h-13" />
   </figure>
-  <div class="card-body mt-2">
-    <h3 class="text-gray-500 "><span class="font-bold">Name:</span> <span class="text-gray-400">{{ advisor?.name }}</span></h3>
-    <h3 class="text-gray-500 "><span class="font-bold">Surmame: </span><span class=" text-gray-400">{{ advisor?.surname }}</span></h3>
-    <h3 class="text-gray-500 "><span class="font-bold">Department: </span><span class=" text-gray-400">{{ advisor?.department }}</span></h3>
-    <h3 class="text-gray-500 "><span class="font-bold">academicPosition: </span><span class=" text-gray-400">{{ advisor?.academicPosition }}</span></h3>
-
-
+  <div class="card-body px-5">
+    <h3 class="text-md text-gray-700 mb-2"><span class="font-bold">Name:</span> <span class="text-gray-400">{{ advisor?.name }}</span></h3>
+    <h3 class="text-md text-gray-700 mb-2"><span class="font-bold">Surmame: </span><span class=" text-gray-400">{{ advisor?.surname }}</span></h3>
+    <h3 class="text-md text-gray-700 mb-2"><span class="font-bold">Department: </span><span class=" text-gray-400">{{ advisor?.department }}</span></h3>
+    <h3 class="text-md text-gray-700 mb-2"><span class="font-bold">Academic Position: </span><span class=" text-gray-400">{{ advisor?.academicPosition }}</span></h3>
     <div class="card-actions justify-end">
       <div  class="flex justify-start ml-32">
         </div>
     <RouterLink
           :to="{ name: 'edit-advisor', params: { id: advisor?.id } }"
-          class="btn-sm btn-circle px-1 py-1  bg-red-600 bg-opacity-70 hover:bg-red-300 top-5 ml-30 right-9 absolute border-2 border-white dark:border-gray-800 rounded-full"
+          class="btn-sm btn-circle px-1 py-1  bg-red-600 bg-opacity-65 hover:bg-red-300 top-6 ml-30 right-9 absolute border-2 border-white dark:border-gray-800 rounded-full"
           ><svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 stroke-linecap="round"
@@ -61,7 +59,7 @@
   </div>
 </div>
 
-<div class="card w-full  shadow-2xl mt-5 ml-5 mr-20">
+<div class="card w-full border shadow-lg mt-5 ml-5 mr-20">
   <div class="card-body items-left text-left">
     <h2 class="card-title"> Student </h2>
     
