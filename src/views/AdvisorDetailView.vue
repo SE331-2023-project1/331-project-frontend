@@ -5,21 +5,35 @@
   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
 </svg>
 
-
     <h1 class="text-4xl mt-5 font-bold text-gray-700"> Advisor Detail </h1>
     </div>
+    <div class="ml-auto">
+  </div>
     <RouterLink :to="{ name: 'add-post' } "
     class="btn bg-gradient-to-r text-white from-red-500 to-orange-500 flex items-center mt-5 mr-10 px-6 py-3">Add Post
+    
   </RouterLink>
+  <div class="flex items-center mr-12 mt-6">
+    <p class="text-gray-700 text-sm mr-4 font-semibold">{{ authStore.currentUserName }}</p>
+    <div class="relative mr-1">
+      <img class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 mt-2" :src="authStore.userImage" alt="" />
+      <span class="relative flex h-3 w-3 bottom-10 left-8">
+        <span class="absolute w-full h-full bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+        <span class="relative inline-flex animate-pulse rounded-full h-3 w-3 bg-green-400"></span>
+      </span>
+    </div>
+  </div>
 </div>
 
 
+
 <div class="flex">
-
 <div class="flex card w-96 bg-base-100 shadow-2xl mt-5">
-
   <figure class="px-12 pt-9">
-  <img v-for="image in advisor?.images" :key="image" :src="image" alt="Shoes" class="rounded-md" />
+    <img 
+    v-for="image in advisor?.images" 
+    :key="image" 
+    :src="image" alt="Shoes" class="rounded-md w-13 h-13" />
   </figure>
   <div class="card-body mt-2">
     <h3 class="text-gray-500 "><span class="font-bold">Name:</span> <span class="text-gray-400">{{ advisor?.name }}</span></h3>
@@ -55,7 +69,7 @@
     
 <div v-for="advisees in advisor?.advisees" :key="advisees.id" class="text-left items-center">
   <RouterLink
-      :to="{ name: 'student-detail', params: { id: advisor?.id } }"
+      :to="{ name: 'student-detail', params: { id:advisees.id } }"
    class="flex items-center px-1 py-2 card-side transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-100 text-gray-700 text-3xl font-bold border-b-2 border-gary-400 w-full hover:bg-gray-200 "> 
     <figure class="mr-3">
       <img  v-for="image in advisees?.images" :key="image" :src="image" class="w-12 h-15 rounded-full">
@@ -76,11 +90,13 @@
 
 </template>
 <script setup lang="ts">
-    import { ref } from 'vue'
-    import type { Ref } from 'vue'
-    import type { AdvisorInfo } from '@/advisor';
+import { ref } from 'vue'
+import type { Ref } from 'vue'
+import type { AdvisorInfo } from '@/advisor';
+import { useAuthStore } from '@/stores/auth'
 import AdvisorService from '@/services/AdvisorService';
     const advisor = ref<AdvisorInfo | null>(null)
+    const authStore = useAuthStore()
     const props = defineProps({
         id: String
     })

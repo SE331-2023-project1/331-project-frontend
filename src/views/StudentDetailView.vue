@@ -11,7 +11,6 @@
 
   <div class="flex items-center mr-12 mt-6">
     <p class="text-gray-700 text-sm mr-4 font-semibold">{{ authStore.currentUserName }}</p>
-
     <div class="relative mr-1">
       <img class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 mt-2" :src="authStore.userImage" alt="" />
       <span class="relative flex h-3 w-3 bottom-10 left-8">
@@ -74,9 +73,9 @@
       <div class="card w-full h-full bg-base-100 shadow-xl mt-5 ml-5 mr-10 border">
         <div class="card-body items-left text-left">
           <h2 class="card-title">Advisor</h2>
-          <button
-            class="transition duration-150 ease-in-out hover:-translate-y-1 hover:scale-11 duration-30 bg-gray-600 border-2  hover:bg-gray-400 hover:shadow-xl  mt-2 text-black py-2 px-4 rounded-lg w-60"
-          >
+          <RouterLink
+          :to="{ name: 'advisor-detail', params: { id: student?.advisor.id } }"
+            class="transition duration-150 ease-in-out hover:-translate-y-1 hover:scale-11 duration-30 bg-gray-600 border-2  hover:bg-gray-400 hover:shadow-xl  mt-2 text-black py-2 px-4 rounded-lg w-60">
             <div class="flex items-center">
               <div class="mr-2">
                 <figure class="">
@@ -94,9 +93,11 @@
                 <p class="text-md text-gray-200">{{ student?.advisor.department }}</p>
               </div>
             </div>
-          </button>
+        </RouterLink>
         </div>
       </div>
+
+
       <div class="card w-full shadow-xl mt-5 ml-5 mr-10 border">
         <figure class="px-2 pt-2"></figure>
         <div class="card-body items-left text-left">

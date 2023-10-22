@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import type { AxiosInstance } from "axios";
 import type { StudentLogin } from "@/student";
-import type { advisorRegister } from '@/advisor'
+// import type { advisorRegister } from '@/advisor'
 
 const apiClient: AxiosInstance = axios.create({
     baseURL: import.meta.env.VITE_BACKEND_URL,
@@ -25,6 +25,12 @@ export const useAuthStore = defineStore('auth', {
         isAdmin(): boolean {
             return this.user?.roles.includes('ROLE_ADMIN') || false
         },
+        isStudent() : boolean {
+            return this.user?.roles.includes('ROLE_STUDENT') || false
+        },
+        isAdvisor() : boolean {
+            return this.user?.roles.includes('ROLE_ADVISOR') || false
+        },
         userImage(): string{
             return this.user?.images[0] || ''
         }
@@ -36,13 +42,22 @@ export const useAuthStore = defineStore('auth', {
             username: username,
             password: password
             })
-        .then((response)=>{
+        .then((response )=>{
+            if(response.data.student != null){
             this.token = response.data.access_token
             this.user = response.data.student
             localStorage.setItem('access_token', this.token as string)
             console.log(response.data)
             localStorage.setItem('user', JSON.stringify(this.user))
             console.log(response.data.student)
+            }else{
+                this.token = response.data.access_token
+                this.user = response.data.advisor
+                localStorage.setItem('access_token', this.token as string)
+                console.log(response.data)
+                localStorage.setItem('user', JSON.stringify(this.user))
+                console.log(response.data.advisor)
+            }
             return response
         })
     },
@@ -67,15 +82,14 @@ export const useAuthStore = defineStore('auth', {
             password: password
         })
     },
-        advisorRegister(username: string, firstname: string, lastname: string, email: string, password: string,Image: []) {
+        advisorRegister(username: string, firstname: string, lastname: string, email: string, password: string) {
             return apiClient
             .post('/api/v1/auth/advisorRegister', {
             username: username,
             firstname: firstname,
             lastname: lastname,
             email: email,
-            password: password,
-            Image: []
+            password: password
         })
     }
 }
