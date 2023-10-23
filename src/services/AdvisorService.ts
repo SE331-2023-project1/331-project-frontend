@@ -1,7 +1,7 @@
 import apiClient from './AxiosClient'
 import type { AxiosResponse  } from 'axios'
 import type { AdvisorInfo } from '@/advisor'
-import type {StudentAdvisor} from '@/student'
+import type {StudentAdvisor, StudentInfo} from '@/student'
 
 export default{
     getAdvisor(perPage: number, page: number): Promise<AxiosResponse<AdvisorInfo[]>>{
@@ -22,6 +22,9 @@ export default{
     },
     getAdvisorsByKeyword(keyword: string, perPage: number, page: number): Promise<AxiosResponse<AdvisorInfo[]>> {
         return apiClient.get<AdvisorInfo[]>('/advisors?_query=' + keyword + '&_limit=' + perPage + '&_page=' + page)
+    },
+    getStudentAdvior(id:number):Promise<AxiosResponse<StudentInfo[]>>{
+        return apiClient.get<StudentInfo[]>('/advisor/student/'+id.toString() )
     }
 
 }
