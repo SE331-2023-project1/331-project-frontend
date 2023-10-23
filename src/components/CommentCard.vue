@@ -132,7 +132,7 @@
     </div>
   </article>
   <div>
-    <AnswerCard v-for="answer in respone_answer" :key="answer.id" :answer="answer"></AnswerCard>
+    <AnswerCard v-for="answer in respone_answer" :key="answer.id" :answer="answer" @answer-edited="updateAnswer"></AnswerCard>
   </div>
 </template>
 
@@ -250,4 +250,10 @@ function editComment() {
       // Perform any necessary actions after editing the comment
     });
 }
+const updateAnswer = () => {
+    console.log("EDIT HAVE PERFORM")
+    AnswerService.getAllAnswerByCommentId(props.comment).then((response) => {
+      respone_answer.value = response.data
+    })
+  };
 </script>

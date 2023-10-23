@@ -33,8 +33,8 @@
 
   <div class="w-full rounded-lg relative">
     
-    <input v-model="chatMessage" type="text" class="w-full border rounded" placeholder="Type your message..." />
-    <button @click="sendMessage" class="absolute right-0 top-1/4 transform -translate-y-1/2  text-white font-bold py-1 px-2">
+    <input v-model="answer_edit.content" type="text" class="w-full border rounded" placeholder="Type your message..." />
+    <button @click="editAnswer" class="absolute right-0 top-1/4 transform -translate-y-1/2  text-white font-bold py-1 px-2">
       <svg class="h-6 w-6 mt-5 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="22" y1="2" x2="11" y2="13" />
         <polygon points="22 2 15 22 11 13 2 9 22 2" />
@@ -46,11 +46,13 @@
   </template>
   
   <script setup lang="ts">
-  import type { AnswerInfo, CommentInfoDTO,AnswerReturnList } from '@/answer'
+  import type { AnswerInfo, CommentInfoDTO,AnswerReturnList,AnswerInfoDTO } from '@/answer'
+import AnswerService from '@/services/AnswerService';
 
   import type { PropType } from 'vue'
   import { ref,computed } from 'vue'
-
+  import { getCurrentInstance } from 'vue';
+const instance = getCurrentInstance();
   const props = defineProps({
     answer: {
       type: Object as PropType<AnswerReturnList>,
@@ -69,6 +71,10 @@
   }
 
 
+  const answer_edit = ref<AnswerInfoDTO>({
+  id: props.answer.id,
+  content: '',
+})
 
   const formattedPostedAt = computed(() => {
   const date = new Date(props.answer.comment.postedAt)
@@ -81,6 +87,20 @@
   return `${day}/${month}/${year} ${hours}:${minutes}`
 })
 
+
+
+function editAnswer() {
+  AnswerService.editAnswer(answer_edit.value)
+    .then((response) => {
+      console.log(response.data);
+      answer_edit.value.content = ''
+      showChatBox.value = !showChatBox.value
+      instance?.emit('answer-edited')
+      // comment_edit.value.commentContent=''
+      // instance?.emit('comment-edited')
+      // Perform any necessary actions after editing the comment
+    });
+}
   </script>
   
   
