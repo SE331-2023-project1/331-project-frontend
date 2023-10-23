@@ -1,4 +1,4 @@
-<template>
+<template >
   <!-- <div>
 			<h1 class="mt-10 mb-5 font-bold text-3xl">Announcement</h1>
       <div class="card card-side transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-110  duration-300 shadow-2xl p-0 mt-5 mr-20 border border-gray-300 hover:bg-gradient-to-r hover:from-red-300 hover:to-orange-400 ">
@@ -16,10 +16,10 @@
         </div>         
        </div>
       </div> -->
-  <div class="mt-10 mb-5">
-    <h1 class="font-bold text-3xl">Add Post</h1>
+  <div  class="mt-10 mb-5">
+    <h1 class="font-bold text-3xl">Announcement</h1>
   </div>
-  <div class="flex items-center justify-center">
+  <div v-if="authStore.isAdmin || authStore.isAdvisor" class="flex items-center justify-center">
     <div
       class="max-w-7xl mr-20 w-full bg-white-100 p-8 shadow-2xl border rounded-br-3xl rounded-tl-3xl"
     >

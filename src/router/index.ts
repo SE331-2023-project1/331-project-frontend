@@ -43,6 +43,12 @@ const router = createRouter({
             params: {id:authStore.getId}
           })
         }
+        // if(authStore.isAdmin){
+        //   router.push({
+        //     name: 'advisor',
+        //     params: {id:authStore.getId}
+        //   })
+        // }
       }
     },
     {
