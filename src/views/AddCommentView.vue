@@ -1,9 +1,12 @@
 <template>
-  <section class="bg-white dark:bg-gray-900 py-5 lg:py-5 antialiased mr-12">
+  <section v-if="authUser.isAdmin || authUser.isAdvisor" class="bg-white dark:bg-gray-900 py-5 lg:py-5 antialiased mr-12">
+    <div> 
+    </div>
     <div class="max-w-full mr-12 mx-auto rounded-br-2xl shadow-2xl rounded-tl-2xl p-10 bg-gray-700">
       <div class="flex justify-between items-center">
         <h2 class="text-lg lg:text-2xl font-bold text-white dark:text-white">Comment</h2>
       </div>
+      
       <form @submit.prevent="saveComment" class="mb-10">
         <div
           class="py-2 px-4 mb-4 mt-3 bg-white rounded-lg rounded-t-lg border-2 h-32 border-gray-200 dark:bg-gray-800 dark:border-gray-700"
@@ -25,9 +28,12 @@
       </form>
     </div>
   </section>
-
+  <div v-if="authUser.isStudent" class="mt-12"> <span class="text-3xl font-bold">Comment</span>
+<div class="mt-5">
     <CommentCard v-for="comment in respone_comment" :key="comment.id" :comment="comment" @comment-edited="updateComment">
     </CommentCard>
+  </div>
+</div>
 </template>
 
 <script setup lang="ts">
