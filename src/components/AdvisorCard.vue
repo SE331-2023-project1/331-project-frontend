@@ -1,4 +1,5 @@
 <template>
+  <div >
     <RouterLink :to="{ name: 'advisor-detail', params: { id: advisor?.id } }">
       <div class="card card-side transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-110  duration-300 shadow-2xl p-0 mt-5 mr-20 border border-gray-300 hover:bg-gradient-to-r hover:from-red-300 hover:to-orange-400 ">
         <figure class="p-5 ml-5">
@@ -15,16 +16,43 @@
        </div>
 
     </RouterLink>
+  </div>
+    <StudentCard class="flex display-block" v-for="student in students" :key="student.id" :student="student"></StudentCard>
+    
   </template>
   <script setup lang="ts">
   import type { AdvisorInfo } from '@/advisor'
-  import type { PropType } from 'vue'
+import router from '@/router';
+import AdvisorService from '@/services/AdvisorService';
+import type { StudentInfo } from '@/student';
+import type { AxiosResponse } from 'axios';
+  import { ref, type PropType, type Ref, computed } from 'vue'
+import { onBeforeRouteUpdate } from 'vue-router';
+import StudentCard from './StudentCard.vue';
+  const students : Ref<Array<StudentInfo>> = ref([])
+  const totalStudents = ref<number>(0)
+  const totalPages = computed(() => Math.ceil(totalStudents.value/2))
+
   const props = defineProps({
     advisor: {
       type: Object as PropType<AdvisorInfo>,
-      require: true
+      required: true
+    },
+ 
+    advisorId:{
+      type: Number,
+      required:true
     }
   })
+  AdvisorService.getStudentAdvior(Number(props.advisor?.id))
+  .then((respone: AxiosResponse<StudentInfo[]>) =>{
+    console.log(totalPages.value)
+    students.value = respone.data
+  })
+  .catch((err) =>{
+    console.log(err)
+  })
+
   </script>
   
   <style scoped></style>

@@ -118,6 +118,11 @@ const router = createRouter({
     component: EditAdvisorForm,
     props: true,
   },
+  {
+    path:"/student-advisor/:id",
+    name: "student-advisor",
+    component: AdvisorListView
+  }
   ]  
 })
 

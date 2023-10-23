@@ -79,7 +79,7 @@
   </div>
 
     <div class="">
-      <AdvisorCard v-for="advisor in advisors" :key="advisor.id" :advisor="advisor"></AdvisorCard>
+      <AdvisorCard v-for="advisor in advisors" :key="advisor.id" :advisor="advisor" :page="page" :advisor-id="advisor.id"></AdvisorCard>
     </div>
     <div class="flex justify-center mt-5">
       <div class="flex items-center">
@@ -121,6 +121,7 @@
   import AdvisorCard from '@/components/AdvisorCard.vue'
   import { useAuthStore } from '@/stores/auth';
   import BaseInput from '@/components/BaseInput.vue'
+import type { StudentInfo } from '@/student'
 
   const authStore = useAuthStore()
   const keyword = ref('')
@@ -132,7 +133,8 @@
     page: {
       type: Number,
       required: true
-    }
+    },
+
   })
   
   const hasNextPage = computed(() => {
@@ -145,11 +147,11 @@
       console.log('hello')
       console.log(advisors.value)
       totalAdvisor.value = response.headers['x-total-count']
+     
     })
     .catch(() => {
       router.push({ name: 'NetworkError' })
     })
-
 
   onBeforeRouteUpdate((to, from, next) => {
   const toPage = Number(to.query.page)
