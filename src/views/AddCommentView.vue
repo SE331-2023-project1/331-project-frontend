@@ -25,7 +25,8 @@
       </form>
     </div>
   </section>
-  <CommentCard v-for="comment in respone_comment" :key="comment.id" :comment="comment">
+
+    <CommentCard v-for="comment in respone_comment" :key="comment.id" :comment="comment" @comment-edited="updateComment">
     </CommentCard>
 </template>
 
@@ -89,4 +90,11 @@ const saveComment = () => {
       router.push({ name: 'network-error' })
     })
 }
+const updateComment = () => {
+    console.log("EDIT HAVE PERFORM")
+    CommentService.getComment(Number(prop.id)).then((response) => {
+        respone_comment.value = response.data
+        console.log(respone_comment.value)
+      })
+  };
 </script>
