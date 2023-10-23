@@ -4,7 +4,7 @@
     <div class="w-full mt-7 max-w-6xl">
       
         <div class="bg-white rounded-xl shadow-xl border ">
-            <div class="px-8 py-4 text-gray-700 text-3xl font-bold shadow-xl shadow-gray-200  border-red-400">Edit Information</div>
+            <div class="px-8 py-4 text-white rounded-t-xl text-3xl font-bold shadow-xl shadow-gray-200 bg-gray-700 border-red-400">Edit Information</div>
             <form @submit.prevent="edit" name="advisor_application" id="advisor_application" action="" class="py-4 px-8">
               <div class="mb-4">
                       <label class="block text-gray-600 text-sm font-bold mb-2" for="advisor_name">Advisor Name:</label>
