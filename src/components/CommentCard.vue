@@ -21,7 +21,7 @@
           <p class="text-sm text-gray-300 dark:text-white">: {{ formattedPostedAt }}</p>
         </div>
         <div class="absolute top-6 right-6">
-        <button
+        <button v-if="authStore.isAdvisor"
           @click="toggleChatBoxEdit"
           class="flex items-center text-sm text-white hover:underline dark:text-gray-400 font-medium"
         >
@@ -145,11 +145,13 @@ import type { PropType } from 'vue'
 import { ref, computed } from 'vue'
 import type { AnswerReturnList } from '@/answer'
 import CommentService from '@/services/CommentService'
+import { useAuthStore } from '@/stores/auth'
 import router from '@/router'
 import { getCurrentInstance } from 'vue';
 import { useMessageStore } from '@/stores/message'
 const instance = getCurrentInstance();
 const store = useMessageStore()
+const authStore = useAuthStore();
 const props = defineProps({
   comment: {
     type: Object as PropType<CommentInfoDTO>,

@@ -11,7 +11,7 @@
     <p class="text-sm text-gray-300 dark:text-white"> replied to {{ answer.comment.advisor.name }}</p>
     <p class="text-sm text-gray-300 dark:text-white">: {{ formattedPostedAt }}</p>
 
-    <button @click="toggleChatBox"
+    <button v-if="authStore.isStudent" @click="toggleChatBox"
         class="flex items-center text-sm text-white ml-3 hover:underline dark:text-gray-400 font-medium">
         <svg class="h-4 w-4 mr-1 text-white " width="24"  height="24"  viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M12 20h9" />  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" /></svg>
         <span>Edit</span>
@@ -52,6 +52,8 @@ import AnswerService from '@/services/AnswerService';
   import type { PropType } from 'vue'
   import { ref,computed } from 'vue'
   import { getCurrentInstance } from 'vue';
+  import { useAuthStore } from '@/stores/auth';
+  const authStore = useAuthStore();
 const instance = getCurrentInstance();
   const props = defineProps({
     answer: {

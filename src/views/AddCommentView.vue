@@ -28,7 +28,7 @@
       </form>
     </div>
   </section>
-  <div v-if="authUser.isStudent" class="mt-12"> <span class="text-3xl font-bold">Comment</span>
+  <div class="mt-12"> <span class="text-3xl font-bold">Comment</span>
 <div class="mt-5">
     <CommentCard v-for="comment in respone_comment" :key="comment.id" :comment="comment" @comment-edited="updateComment">
     </CommentCard>
