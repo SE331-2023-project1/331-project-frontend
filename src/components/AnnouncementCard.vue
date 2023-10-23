@@ -21,7 +21,8 @@
         </p>
         </div>
 
-  <a v-if="announcement?.files[0]" :href="announcement.files[0]">
+  <a v-if="announcement?.files[0]" 
+  :href="announcement.files[0]">
      Dowload file
   </a>
   </div>     
@@ -30,6 +31,7 @@
 
 import type { PropType } from 'vue'
 import type { AnnouncementInfo } from '@/announcement'
+import { useRouter } from 'vue-router'
 defineProps({
   announcement: {
     type: Object as PropType<AnnouncementInfo>,
