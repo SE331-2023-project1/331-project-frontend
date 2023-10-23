@@ -1,3 +1,5 @@
+import type { AnswerInfo } from "./answer";
+
 export interface CommentInfo {
     id:number;
     commentContent: string;
@@ -7,8 +9,8 @@ export interface CommentInfoDTO {
     id:number
     advisor:AdvisorCommentInfo;
     student: StudentCommentInfo;
-    answer: [];
-    commentContent: number;
+    answer: AnswerInfo[];
+    commentContent: string;
     postedAt:string;
 }
 export interface AdvisorCommentInfo{

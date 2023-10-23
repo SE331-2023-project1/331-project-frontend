@@ -1,9 +1,10 @@
 <template>
   <div class="flex">
     <!-- Drawer on the left -->
-    <div class="w-1/6">
-      <div class="drawer lg:drawer-open z-50">
-        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+    <div class="w-1/6 ">
+      <nav class="fixed">
+      <div class=" drawer lg:drawer-open z-50">
+        <input id="my-drawer-2" type="checkbox" class=" drawer-toggle" />
         <div class="drawer-content flex flex-col items-center justify-center">
           <label for="my-drawer-2" class="btn drawer-button lg:hidden mb-5">
             <svg class="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -219,6 +220,8 @@
           </ul>
         </div>
       </div>
+    </nav>
+
     </div>
     <div class="w-full">
       <RouterView />
