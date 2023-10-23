@@ -9,10 +9,6 @@
     </div>
     <div class="ml-auto">
   </div>
-    <RouterLink :to="{ name: 'add-post' } "
-    class="btn bg-gradient-to-r text-white from-red-500 to-orange-500 flex items-center mt-5 mr-10 px-6 py-2">+ Add Post
-    
-  </RouterLink>
   <div class="flex items-center mr-9 mt-6">
     <p class="text-gray-700 text-sm mr-4 font-semibold">{{ authStore.currentUserName }}</p>
     <div class="relative mr-1">

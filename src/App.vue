@@ -51,7 +51,7 @@
           </div>
 
             <!-- Sidebar content here -->
-            <li class="flex flex-col items-center mt-2">
+            <li v-if="authStore.isAdmin || authStore.isAdvisor" class="flex flex-col items-center mt-2">
               <RouterLink
                 :to="{ name: 'announcement' }"
               class="inline-flex flex-col items-center p-2 text-gray-900 rounded-lg group"

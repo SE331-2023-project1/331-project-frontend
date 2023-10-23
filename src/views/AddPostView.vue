@@ -75,8 +75,11 @@
       </RouterLink>
     </div>
       </form>
+      
     </div>
+    
   </div>
+
 </template>
 
 <script setup lang="ts">
@@ -94,6 +97,7 @@ import type {FileURL} from '@/announcement'
 const files = ref<FileList | null>(null);
 const showAnnouncementCard = ref(false)
 const fileURL = ref<FileURL>()
+const authStore = useAuthStore()
   const props = defineProps({
     id: {
     type: Number,
