@@ -108,19 +108,6 @@ const advisor = ref<AdvisorInfo>({
   advisees: [{ id: 1, name: '', studentID: '', surname: '', images: [] }]
 })
 
-const announcement = ref<AnnouncementInfo>({
-  id: 0,
-  advisor: 0,
-  files: '',
-  content: ''
-})
-
-AnnouncementService.getAnnouncement(3, props.page)
-  .then((response : AxiosResponse<AnnouncementInfo[]>) => {
-    announcement.value = response.data
-    console.log('hello')
-    console.log(announcement.value)
-  })
 
 
 const handleDrop = (event : DragEvent) => {

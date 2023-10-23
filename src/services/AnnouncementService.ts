@@ -9,6 +9,12 @@ export default {
     announcement(id:number,file:AnnouncementInfo): Promise<AxiosResponse<AnnouncementInfo>> {
         return apiClient.post<AnnouncementInfo>('/createAnnouncement/' +id.toString() , file);
     },
+    getfiles(id:number): Promise<AxiosResponse<AnnouncementInfo>> {
+        return apiClient.get<AnnouncementInfo>('/announcement/'+ id.toString());
+    },
+    save(file:AnnouncementInfo): Promise<AxiosResponse<AnnouncementInfo>>{
+        return apiClient.post<AnnouncementInfo>('/createAnnouncement/' ,file);
+    }
 }
 
 

@@ -2,11 +2,35 @@
 <template>
   <div>
 			<h1 class="mt-10 mb-5 font-bold text-3xl">Announcement</h1>
-    
+      {{ response_announcement }}
   </div>
 
+</template>
 
+<script setup lang="ts">
+import type { AnnouncementInfo } from '@/announcement'
+import AnnouncementService from '@/services/AnnouncementService';
+import { useAuthStore } from '@/stores/auth';
+import { ref } from 'vue'
+const authStore = useAuthStore()
+const announcement = ref<AnnouncementInfo>({
+  id: 0,
+  advisor: 0,
+  files: '',
+  content: ''
+})
+const response_announcement =  ref<AnnouncementInfo[]>()
 
+AnnouncementService.getAnnouncement(authStore.getId)
+.then((response) => {
+  response_announcement.value = response.data
+})
+  // .then((response)) => {
+  //   // announcement.value = response.data
+  //   // console.log('hello')
+  //   // console.log(announcement.value)
+  // })
+</script>
 
 
 
@@ -50,4 +74,3 @@
   </div>
 </a>
 </div> -->
-</template>
