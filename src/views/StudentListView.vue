@@ -128,7 +128,6 @@ import NProgress from 'nprogress'
 import StudentCard from '@/components/StudentCard.vue'
 import AdvisorService from '@/services/AdvisorService'
 import type { StudentAdvisor } from '@/student'
-import BaseInput from '@/components/BaseInput.vue'
 import { useAuthStore } from '@/stores/auth';
 const authStore = useAuthStore()
 const router = useRouter()
@@ -145,17 +144,18 @@ const props = defineProps({
 const hasNextPage = computed(() => {
   return props.page.valueOf() < totalPages.value
 })
-NProgress
+NProgress.start();
 StudentService.getStudent(3, props.page)
-  .then((response: AxiosResponse<StudentInfo[]>) => {
-    students.value = response.data
-    console.log('hello')
-    console.log(students.value)
-    totalStudent.value = response.headers['x-total-count']
-  })
-  .catch(() => {
-    router.push({ name: 'NetworkError' })
-  })
+    .then((response: AxiosResponse<StudentInfo[]>) => {
+      students.value = response.data;
+      totalStudent.value = response.headers['x-total-count'];
+      NProgress.done();
+    })
+    .catch(() => {
+      NProgress.done();
+      router.push({ name: 'NetworkError' });
+    });
+
 
 const advisors = ref<StudentAdvisor[]>([])
 AdvisorService.getAdvisors()
@@ -169,16 +169,19 @@ AdvisorService.getAdvisors()
   
 console.log(advisors.value)
 onBeforeRouteUpdate((to, from, next) => {
-  const toPage = Number(to.query.page)
-  StudentService.getStudent(3, toPage)
-    .then((response: AxiosResponse<StudentInfo[]>) => {
-      students.value = response.data
-      totalStudent.value = response.headers['x-total-count']
-      next()
-    })
-    .catch(() => {
-      next({ name: 'NetworkError' })
-    })
+    const toPage = Number(to.query.page);
+    NProgress.start();
+    StudentService.getStudent(3, toPage)
+      .then((response: AxiosResponse<StudentInfo[]>) => {
+        students.value = response.data;
+        totalStudent.value = response.headers['x-total-count'];
+        NProgress.done();
+        next();
+      })
+      .catch(() => {
+        NProgress.done();
+        next({ name: 'NetworkError' });
+      });
   let queryFunction
   if (keyword.value === null || keyword.value === '') {
     queryFunction = StudentService.getStudent(3, toPage)
