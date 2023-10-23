@@ -1,6 +1,6 @@
 <template>
   <!-- component -->
-  <div class="mt-10 mb-5">
+  <div v-if="authStore.isAdvisor || authStore.isAdmin" class="mt-10 mb-5">
     <h1 class="font-bold text-3xl">Add Post</h1>
   </div>
   <div class="flex items-center justify-center">

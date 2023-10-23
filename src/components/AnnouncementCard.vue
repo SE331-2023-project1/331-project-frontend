@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 m-4 border rounded-lg transition duration-300 ease-in-out hover:bg-blue-200">
+  <div v-if="authStore.isStudent" class="p-4 m-4 border rounded-lg transition duration-300 ease-in-out hover:bg-blue-200">
     <p class="inline-flex items-center text-sm text-gray-900 dark:text-white font-semibold">
           <img
             v-for="image in announcement?.advisor.images"
@@ -32,6 +32,8 @@
 import type { PropType } from 'vue'
 import type { AnnouncementInfo } from '@/announcement'
 import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth';
+const authStore = useAuthStore()
 defineProps({
   announcement: {
     type: Object as PropType<AnnouncementInfo>,

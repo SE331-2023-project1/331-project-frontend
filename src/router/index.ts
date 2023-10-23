@@ -45,7 +45,7 @@ const router = createRouter({
       component: AdvisorListView,
       props: (route) => ({
         page: parseInt((route.query?.page as string) || "1"),
-      }),    
+      }),       
     },
     
     {
