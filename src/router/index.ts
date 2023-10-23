@@ -5,7 +5,7 @@ import AdvisorListView from '@/views/AdvisorListView.vue'
 import AdvisorDetailView from '@/views/AdvisorDetailView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import SignInView from '@/views/SignInView.vue'
-
+import NProgress from 'nprogress'
 import StudentFormView from '@/views/StudentFormView.vue'
 import AdvisorFormView from '@/views/AdvisorFormView.vue'
 import EditAdvisorForm from '@/views/EditAdvisorFormView.vue'
@@ -118,7 +118,16 @@ const router = createRouter({
     component: EditAdvisorForm,
     props: true,
   },
-  ]  
-})
+],
+});
 
-export default router
+router.beforeEach(() => {
+  NProgress.start();
+});
+
+router.afterEach(() => {
+  NProgress.done();
+});
+
+export default router;
+

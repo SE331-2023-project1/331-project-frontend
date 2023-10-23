@@ -22,7 +22,7 @@
         </div>
         <div class="absolute top-6 right-6">
         <button
-          @click="toggleChatBox"
+          @click="toggleChatBoxEdit"
           class="flex items-center text-sm text-white hover:underline dark:text-gray-400 font-medium"
         >
           <svg
@@ -42,6 +42,38 @@
           </svg>
           <span>Edit</span>
         </button>
+        <div v-if="showChatBoxEdit" class="flex items-center mt-4">
+      <div class="w-full rounded-lg relative">
+        <form @submit.prevent="answerComment">
+          <input
+            v-model="comment_edit.commentContent"
+            type="text"
+            class="w-full border rounded"
+            placeholder="Type your message..."
+          />
+          <button
+            @click="editComment"
+            class="absolute right-0 top-1/4 transform -translate-y-1/2 text-white font-bold py-1 px-2"
+          >
+            <svg
+              class="h-6 w-6 mt-5 text-red-500"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+
+
+
       </div>
     </div>
     </footer>
@@ -105,14 +137,19 @@
 </template>
 
 <script setup lang="ts">
-import type { AnswerInfo, AnswerInfoDTO } from '@/answer'
-import type { CommentInfoDTO } from '@/comment'
+import type { AnswerInfo } from '@/answer'
+import type { CommentInfoDTO, CommentInfo, AdvisorCommentInfo } from '@/comment'
 import AnswerService from '@/services/AnswerService'
 import AnswerCard from '@/components/AnswerCard.vue'
 import type { PropType } from 'vue'
 import { ref, computed } from 'vue'
 import type { AnswerReturnList } from '@/answer'
 import CommentService from '@/services/CommentService'
+import router from '@/router'
+import { getCurrentInstance } from 'vue';
+import { useMessageStore } from '@/stores/message'
+const instance = getCurrentInstance();
+const store = useMessageStore()
 const props = defineProps({
   comment: {
     type: Object as PropType<CommentInfoDTO>,
@@ -146,6 +183,13 @@ const answer = ref<AnswerInfo>({
     }
   }
 })
+
+const comment_edit = ref<CommentInfo>({
+  id: props.comment.id,
+  commentContent: '',
+  advisorId: 0
+})
+
 const respone_answer = ref<AnswerReturnList[]>([])
 AnswerService.getAllAnswerByCommentId(props.comment).then((response) => {
   respone_answer.value = response.data
@@ -156,6 +200,12 @@ const chatMessage = ref('')
 const toggleChatBox = () => {
   showChatBox.value = !showChatBox.value
 }
+
+const showChatBoxEdit = ref(false)
+const toggleChatBoxEdit = () => {
+    showChatBoxEdit.value = !showChatBoxEdit.value
+}
+
 const sendMessage = () => {
   console.log(answer.value)
 
@@ -167,6 +217,7 @@ const sendMessage = () => {
   })
   answer.value.content = ''
 }
+
 const answerComment = () => {}
 
 const formattedPostedAt = computed(() => {
@@ -179,4 +230,24 @@ const formattedPostedAt = computed(() => {
   const seconds = date.getSeconds().toString().padStart(2, '0')
   return `${day}/${month}/${year} ${hours}:${minutes}`
 })
+const comment_keep = ref<CommentInfoDTO | null>(null)
+
+CommentService.getComment(Number(props.comment.id)).then((response) => {
+   {
+    comment_keep.value = response.data[0]; // Assuming you want to access the first element
+  }
+}).catch(error => {
+  console.log(error);
+});
+
+function editComment() {
+    CommentService.editComment(comment_edit.value)
+    .then((response) => {
+      console.log(response.data);
+      showChatBoxEdit.value = !showChatBoxEdit.value
+      comment_edit.value.commentContent=''
+      instance?.emit('comment-edited')
+      // Perform any necessary actions after editing the comment
+    });
+}
 </script>

@@ -49,13 +49,19 @@
 				Forgot your password?
 			  </a>
 			</div>
+
 		  </div>
-  
+		  <div id="flashMessage" v-if="message" class="flex justify-center items-center">
+			<svg class="h-5 w-5 text-red-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M12 9v2m0 4v.01" />  <path d="M5.07 19H19a2 2 0 0 0 1.75 -2.75L13.75 4a2 2 0 0 0 -3.5 0L3.25 16.25a2 2 0 0 0 1.75 2.75" /></svg>
+  <h4 class="text-red-500" >{{ message }}</h4>
+</div>
+
 		  <div>
 			<button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-red-400 to-orange-500 hover:from-red-500 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 mt-8">
 			  LOGIN
 			</button>
 		  </div>
+
 		</form>
 		<RouterLink :to="{ name: 'Signup'}" class="text-sm text-center">
 		  <p class="text-gray-600 mt-5">Don't have an account? <a href="#" class="font-medium text-red-600 hover:text-red-500">Sign Up</a></p>
@@ -72,8 +78,11 @@
   import { useAuthStore } from '@/stores/auth';
   import router from '@/router';
   import { useMessageStore } from '@/stores/message';
+import { storeToRefs } from 'pinia';
   
-  const messageStore = useMessageStore();
+  const store = useMessageStore();
+  const { message } = storeToRefs(store)
+
   const authStore = useAuthStore();
   
   const validationSchema = yup.object({
@@ -93,16 +102,17 @@
   const { value: password } = useField<string>('password');
   
   const onSubmit = handleSubmit((values) => {
-	authStore.login(values.username, values.password)
-	.then(() => {
-		router.push({name: 'home'})
-	})
-	.catch((err) => {
-		messageStore.updateMessage('Could not login')
-		setTimeout(() => {
-			messageStore.resetMessage()
-		}, 3000)
-	})
-  })
+  authStore
+    .login(values.username, values.password)
+    .then(() => {
+      router.push({ name: 'home' });
+    })
+    .catch((err) => {
+		store.updateMessage('Your username or password incorret');
+      setTimeout(() => {
+        store.resetMessage();
+      }, 3000);
+    });
+});
   </script>
   
