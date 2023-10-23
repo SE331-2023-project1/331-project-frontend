@@ -1,4 +1,5 @@
 import type { AxiosResponse  } from 'axios'
+import type {FileURL} from '@/announcement'
 import axios from "axios";
 const apiClient = axios.create({
     baseURL: "http://localhost:8080",
@@ -8,7 +9,7 @@ const apiClient = axios.create({
     }
 })
 export default{
-    uploadFile(files: FormData): Promise<AxiosResponse<string[]>>{
-        return apiClient.post<string[]>('/uploadAnnouncement',files)
+    uploadFile(files: FormData): Promise<AxiosResponse<FileURL>>{
+        return apiClient.post<FileURL>('/uploadAnnouncement',files)
     },
 }

@@ -1,32 +1,42 @@
 <template>
-    <RouterLink :to="{ name: 'AnnouncementView'}"
-      class="card card-side transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-110  duration-300 shadow-2xl p-0 mt-5 mr-20 border border-gray-300 hover:bg-gradient-to-r hover:from-red-300 hover:to-orange-400">
-        <!-- <figure class="p-5 ml-5 ">
-          <img v-for="image in student?.images" :key="image" :src="image" class="w-20 h-25 rounded-md" alt="student image" />
-        </figure> -->
-        <div class="card-body px-6 animate-fade-down">
-          <h2 class="card-title text-gray-800 font-bold text-xl"></h2>
-          <h3 class="text-gray-500 text-sm"></h3>
-          <div class="flex flex-wrap items-center space-x-2">
-            <!-- <div v-for="course in student?.courses" :key="course.id">
-              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ course.name }}</span>
-            </div> -->
-          </div>
+  <div class="p-4 m-4 border rounded-lg transition duration-300 ease-in-out hover:bg-blue-200">
+    <p class="inline-flex items-center text-sm text-gray-900 dark:text-white font-semibold">
+          <img
+            v-for="image in announcement?.advisor.images"
+            :key="image"
+            :src="image"
+            class="mr-2 w-10 h-10 rounded-full"
+            alt="img_advisor"
+          />
+        </p>
+        <div class="flex">
+        <p class="text-sm text-black font-bold dark:text-white mr-1">
+          {{ announcement?.advisor.name }} {{ announcement?.advisor.surname }}
+        </p>
+
         </div>
-    </RouterLink>
-  </template>
-  
-<!--   
-  <script setup lang="ts">
-  import type { StudentInfo } from '@/student'
-  import type { PropType } from 'vue'
-  const props = defineProps({
-    student: {
-      type: Object as PropType<StudentInfo>,
-      require: true
-    }
-  })
-  </script>
-  
-  <style scoped></style> -->
-  
+        <div class="flex">
+          <p class="text-sm text-black-700 font-bold dark:text-white mr-1">
+          {{ announcement?.content}}
+        </p>
+        </div>
+
+  <a v-if="announcement?.files[0]" :href="announcement.files[0]">
+     Dowload file
+  </a>
+  </div>     
+</template>
+<script setup lang="ts">
+
+import type { PropType } from 'vue'
+import type { AnnouncementInfo } from '@/announcement'
+defineProps({
+  announcement: {
+    type: Object as PropType<AnnouncementInfo>,
+    require: true
+  }
+})
+
+</script>
+
+<style scoped></style>

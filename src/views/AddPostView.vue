@@ -5,8 +5,7 @@
   </div>
   <div class="flex items-center justify-center">
     <div class="max-w-7xl mr-20 w-full  bg-white-100 p-8 shadow-2xl border rounded-br-3xl rounded-tl-3xl ">
-      <form>
-        <!-- Post Content Section -->
+      <form @submit.prevent="saveAnnouncement" class="mb-10">
         <div
         @dragover.prevent
         @drop.prevent="handleDrop"
@@ -15,6 +14,7 @@
         <div class="mb-6">
           <label for="postContent" class="block text-black text-md font-bold mb-2">New Post</label>
           <textarea
+          v-model="announcement.content"
             id="postContent"
             name="postContent"
             rows="4"
@@ -27,7 +27,8 @@
           <div class="flex border-2 rounded-md border-gray-300  bg-gray-100 ">
             <div>
             </div>
-            <label for="fileInput" class=" bg-red-500 w-30 px-4 py-2 hover:bg-gray-500 rounded-sm">
+            <label 
+            for="fileInput" class=" bg-red-500 w-30 px-4 py-2 hover:bg-gray-500 rounded-sm">
               <div 
               class="flex" 
               >
@@ -36,7 +37,12 @@
 </svg>
 
             </div>
-              <input type="file" id="fileInput" class="hidden" @change="handleFileSelect" />
+              <input
+              v-modle="announcement.files" 
+              type="file" 
+              id="fileInput" 
+              class="hidden" 
+              @change="handleFileSelect" />
             </label>
             <p class="ml-3 mt-2">{{ selectedFile ? selectedFile.name : 'Click icon to select a file' }}</p>
           </div>
@@ -75,7 +81,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import AnnouncementCard from '@/components/AnnouncementCard.vue';
 import { type AdvisorInfo } from '@/advisor';
 import UploadFile from '@/services/UploadFile'
 import { useRouter } from 'vue-router'
@@ -83,14 +88,13 @@ import AnnouncementService from '@/services/AnnouncementService';
 const selectedFile = ref<File | null>(null);
 const router = useRouter()
 import { defineProps } from 'vue'
+import { useAuthStore } from '@/stores/auth';
 import type { AnnouncementInfo } from '@/announcement'
-import type { AxiosResponse } from 'axios';
+import type {FileURL} from '@/announcement'
 const files = ref<FileList | null>(null);
+const showAnnouncementCard = ref(false)
+const fileURL = ref<FileURL>()
   const props = defineProps({
-    page: {
-      type: Number,
-      required: true
-    },
     id: {
     type: Number,
     required: true
@@ -107,9 +111,20 @@ const advisor = ref<AdvisorInfo>({
   academicPosition: '',
   advisees: [{ id: 1, name: '', studentID: '', surname: '', images: [] }]
 })
-
-
-
+const authUser = useAuthStore()
+const announcement = ref<AnnouncementInfo>({
+    id:0,
+    files: [],
+    content: '',
+    advisor : {
+      id: authUser.getId,
+    academicPosition: '',
+    name: '',
+    surname: '',
+    images: [],
+    department: ''
+    }
+})
 const handleDrop = (event : DragEvent) => {
   event.preventDefault();
   if ( event.dataTransfer?.files != null){
@@ -136,11 +151,49 @@ const confirmFile = () => {
   if (files.value) {
     const formData = new FormData();
     formData.append('file', files.value[0]);
-    UploadFile.uploadFile(formData);
+    UploadFile.uploadFile(formData).then((response)=>{
+      console.log(response.data)
+      fileURL.value = response.data
+      announcement.value.files.push(fileURL.value.name);
+      console.log(fileURL.value.name)
+      AnnouncementService.saveAnnouncement(authUser.getId,announcement.value)
+    })
   }
+  else{
+    announcement.value.files = []
+  AnnouncementService.saveAnnouncement(authUser.getId,announcement.value)
+  console.log(announcement.value)
+
+  }
+  
+  // AnnouncementService.saveAnnouncement(authUser.getId,announcement.value)
+  //   .then((response) => {
+  //     c
+  //   })
   router.push({ name: 'announcement' })
   
 };
 
+
+
+
+const saveAnnouncement = () => {
+  console.log('EIEI ' + authUser.getId)
+  console.log(announcement.value)
+  AnnouncementService.saveAnnouncement(authUser.getId,announcement.value)
+    .then((response) => {
+      // Add this line to show the CommentCard when the comment is successfully saved
+      showAnnouncementCard.value = true
+      console.log(response.data)
+      announcement.value.content = ''
+      AnnouncementService.getfiles(authUser.getId).then((response) => {
+      //  announcement.value.files = ''
+      console.log(announcement.value.files)
+  })
+      })
+    .catch(() => {
+      router.push({ name: 'network-error' })
+    })
+}
 </script>
 

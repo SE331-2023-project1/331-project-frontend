@@ -25,10 +25,8 @@
       </form>
     </div>
   </section>
-
-    <CommentCard v-for="comment in respone_comment" :key="comment.id" :comment="comment">
+  <CommentCard v-for="comment in respone_comment" :key="comment.id" :comment="comment">
     </CommentCard>
-
 </template>
 
 <script setup lang="ts">
@@ -60,7 +58,8 @@ const comment = ref<CommentInfo>({
 })
 
 const respone_comment = ref<CommentInfoDTO[]>([])
-const showCommentCard = ref(false) // Initialize showCommentCard with ref
+const showCommentCard = ref(false)
+ // Initialize showCommentCard with ref
 CommentService.getComment(Number(prop.id)).then((response) => {
   respone_comment.value = response.data
   console.log(respone_comment.value)

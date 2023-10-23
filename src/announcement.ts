@@ -1,8 +1,8 @@
 export interface AnnouncementInfo {
     id:number
-    files: string;
+    files: string[];
     content: string;
-    advisor: number;
+    advisor: AdvisorFilesDTO;
 }
 
 export interface AdvisorFilesDTO{
@@ -12,4 +12,7 @@ export interface AdvisorFilesDTO{
     surname: string
     images: string[]
     department: string
+}
+export interface FileURL{
+    name:string
 }
