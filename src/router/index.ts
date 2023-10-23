@@ -37,6 +37,12 @@ const router = createRouter({
             params: {id:authStore.getId}
           })
         }
+        if(authStore.isAdvisor){
+          router.push({
+            name: 'advisor-detail',
+            params: {id:authStore.getId}
+          })
+        }
       }
     },
     {

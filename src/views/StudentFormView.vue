@@ -23,7 +23,7 @@
                     <p id="error_creater_id"></p>
                 </div>
                 
-                <div class="mb-4">
+                <div v-if="authStore.isAdmin" class="mb-4">
                   <label class="block text-gray-600 text-sm font-bold mb-2" for="advisor">Advisor:</label>
 
                 <select v-model="student.advisor" class="border rounded w-full py-2 px-3 text-gray-700 border-gray-300" type="select" name="advisor" id="advisor" >
@@ -59,7 +59,9 @@ import AdvisorService from '@/services/AdvisorService'; // Import AdvisorService
 import { useMessageStore } from '@/stores/message'; // Check the location of useMessageStore
 import { useRouter } from 'vue-router'; // Check the location of useRouter
 import ImageUpload from '@/components/ImageUpload.vue'; // Check the location of ImageUpload component
+import { useAuthStore } from '@/stores/auth';
 
+const authStore = useAuthStore();
 const store = useMessageStore();
 const router = useRouter();
 const props = defineProps({
